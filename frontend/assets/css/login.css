@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px;
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+button {
+    background-color: black;
+    
+}
