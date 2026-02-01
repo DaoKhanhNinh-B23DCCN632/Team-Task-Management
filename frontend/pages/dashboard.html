@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="..\assets\css\dashboard.css">
 </head>
 <body>
-    <div class="dashboard">
+    <div class="border border-gray-200 flex flex-row">
         <!-- side bar  -->
-        <div class="side_bar">
+        <div class="flex bg-white-200 border-r border-r-gray-200 flex-col justify-self-start min-h-screen w-50 items-left pt-25 pl-10">
             <!-- dashboard side bar -->
-            <div class="dashboard_sb">
-                <img src="..\assets\icons\dashboard.png" alt="dashboard icon"> 
-                <h1 id="db">Dashboard</h1>
+            <div class="flex flex-row">
+                <img src="..\assets\icons\dashboard.png" alt="dashboard icon" class="w-5 h-5 mr-2"> 
+                <a href="">Dashboard</a>
             </div>
+            <br>
             <!-- projile -->
-            <div class="profile">
-                <img src="..\assets\icons\profile.png" alt="profile icon">
-                <h1>Profile</h1>
+            <div class="flex flex-row">
+                <img src="..\assets\icons\profile.png" alt="profile icon" class="w-5 h-5 mr-2">
+                <a href="">Profile</a>
             </div>
+            <br>
             <!-- project -->
-            <div class="project">
-                <img src="..\assets\icons\project.png" alt="project icon">
-                <h1>Project</h1>
+            <div class="flex flex-row">
+                <img src="..\assets\icons\project.png" alt="project icon" class="w-5 h-5 mr-2">
+                <a href="">Project</a>
             </div>
+            <br>
             <!-- calendar -->
-            <div class="project">
-                <img src="..\assets\icons\calendar.png" alt="project icon">
-                <h1>Calendar</h1>
+            <div class="flex flex-row">
+                <img src="..\assets\icons\calendar.png" alt="project icon" class="w-5 h-5 mr-2">
+                <a href="">Calendar</a>
             </div>
         </div>
-
+        <!-- header -->
+        <div class="flex flex-row bg-white-200 h-25 justify-self-right w-screen items-center border-b border-b-gray-200">
+            <h1 class="text-[40px] font-bold">Dashboard</h1>
+        </div>
     </div>
 </body>
 </html>
