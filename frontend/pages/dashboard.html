@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="..\assets\css\dashboard.css">
 </head>
 <body>
-    <div class="border border-gray-200 grid grid-flow-col grid-cols-5 grid-rows-4 min-h-screen">
-        <!-- side bar  -->
-        <div class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4">
+    <div class="border border-gray-200 grid grid-flow-col grid-cols-[50_1fr_1fr_1fr_1fr] grid-rows-[80px_120px_200px_1fr] min-h-screen">
+        <!---------------------------- 
+        side bar  
+        ------------------------------>
+        <div class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4 @md: pl-10 pr-10 w-50">
             <!-- dashboard side bar -->
             <div class="flex flex-row">
                 <img src="..\assets\icons\dashboard.png" alt="dashboard icon" class="w-5 h-5 mr-2"> 
@@ -33,8 +35,10 @@
                 <a href="">Calendar</a>
             </div>
         </div>
-        <!-- header -->
-        <div class="bg-white-200 col-span-4 items-center border-b border-b-black-200 w-full flex flex-row h-fit">
+        <!----------------------- 
+        header 
+        ------------------------->
+        <div class="bg-white-200 col-span-4 items-center border w-full flex flex-row pl-10">
             <div><h1 class="text-[30px] font-bold">Dashboard</h1></div>
             <div><img src="..\assets\icons\notify.png" alt="notify icon" class="w-8"></div>
             <div><img src="..\assets\icons\new-email.png" alt="new email icon" class="w-8"></div>
@@ -46,8 +50,10 @@
                 </div>
             </div>
         </div>
-        <!-- overview -->
-        <div class="col-span-4 row-span-1 flex flex-row items-center border">
+        <!------------------------ 
+        overview 
+        ------------------------->
+        <div class="col-span-4 row-span-1 flex flex-row items-center border-white-100 rounded-xl mt-2 ml-4 mr-4 p-10 bg-gray-100 shadow-xl">
             <div>
                 <div><h2>Projects</h2></div>
                 <div class="flex flex-row">
@@ -63,8 +69,80 @@
                 <div><button>Remove Project</button></div>
             </div>
         </div>
-        <!-- main content -->
-        <div class="col-span-4 row-span-2 border">
+        <!-------------------------
+         main content 
+         ------------------------->
+         <!----------------------- 
+         in progress 
+         ------------------------->
+        <div class="col-span-4 row-span-1 border-white flex flex-col mt-2 p-10">
+            <div><h2 class="font-bold text-[20px]">In progress</h2></div>
+            <div class="flex flex-row">
+                <div class="border-white rounded-xl shadow-xl/20 mr-4 h-40 text-center p-5 w-[310px]">
+                    <h3>January 10, 2024 - July 30, 2024</h3> <br>
+                    <a href=""><span class="font-bold text-[20px]">TourO Web Development</span></a>
+                    <h3>Prototyping</h3>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 mr-4 w-[333px]">
+                    <h3>February 12, 2024 - August 12, 2024</h3> <br>
+                    <a href=""> <span class="font-bold text-[20px]">Dashboard Portal</span></a>
+                    <h3>Phase - III</h3>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 mr-4 w-[330px]">
+                    <h3>March 20, 2023 - August 20, 2024</h3> <br>
+                    <a href=""><span class="font-bold text-[20px]">Designing</span></a>
+                    <h3>Testing</h3>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 w-[320px]">
+                    <h3>July 10, 2024 - July 12, 2025</h3> <br>
+                    <a href=""><span class="font-bold text-[20px]">Project</span></a>
+                    <h3>User requirement gathering</h3>
+                </div>
+            </div>
+        </div>
+        <!-------------------------
+         upcoming 
+         ------------------------->
+        <div class="col-span-4 row-span-1 border-white flex flex-col mt-2 p-10">
+            <div><h2 class="font-bold text-[20px]">Upcoming</h2></div>
+            <div class="flex flex-row">
+                <div class="border-white rounded-xl shadow-xl/20 mr-4 text-center h-70 p-5">
+                    <h3>July 16, 2024</h3>
+                    <h3 class="font-bold text-[20px]">Web Development</h3><br>
+                    <div class="border-b border-b-gray-250 h-35"><p><span class="font-bold">Definition of object</span>: Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Aspernatur eveniet animi quibusdam sed, 
+                        voluptatum maxime veritatis quod maiores earum eius harum, 
+                        possimus sit atque, cumque corporis nemo? Quaerat, cum quisquam.</p></div>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 mr-4 text-center h-70 p-5">
+                    <h3>30 July, 2024</h3>
+                    <h3 class="font-bold text-[20px]">Dashboard Portal</h3> <br>
+                    <div class="border-b border-b-gray-250 h-35"><p><span class="font-bold">Definition of project</span>: Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Praesentium, sint. Odio libero doloremque eveniet quam necessitatibus possimus
+                        rem dolorum, cupiditate distinctio sint, fuga consequuntur? Eos delectus sint 
+                        explicabo inventore similique.</p></div>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 mr-4 text-center h-70 p-5">
+                    <h3>August 10, 2024</h3>
+                    <h3 class="font-bold text-[20px]">Designing</h3> <br>
+                    <div class="border-b border-b-gray-250 h-35"><p>
+                        <span class="font-bold">Definition of project</span>: Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ipsum reprehenderit dolor pariatur facere. Deserunt tenetur eveniet error quidem? 
+                        Quos veritatis animi, nulla tempora deserunt soluta aspernatur blanditiis doloremque
+                        assumenda minima.
+                    </p></div>
+                </div>
+                <div class="border-white rounded-xl shadow-xl/20 text-center h-70 p-5">
+                    <h3>July 10, 2024</h3>
+                    <h3 class="font-bold text-[20px]">Project</h3> <br>
+                    <div class="border-b border-b-gray-250 h-35"><p>
+                        <span class="font-bold">Definition of project</span>: Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Eaque quaerat aperiam dolore dicta, consectetur in odit provident rem illum 
+                        reiciendis voluptates placeat possimus commodi, nostrum rerum, est corrupti 
+                        molestiae eligendi?
+                    </p></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
