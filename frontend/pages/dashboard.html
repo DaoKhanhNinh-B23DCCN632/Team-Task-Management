@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="..\assets\css\dashboard.css">
 </head>
 <body>
-    <div class="border border-gray-200 flex flex-row">
+    <div class="border border-gray-200 grid grid-flow-col grid-cols-5 grid-rows-4 min-h-screen">
         <!-- side bar  -->
-        <div class="flex bg-white-200 border-r border-r-gray-200 flex-col justify-self-start min-h-screen w-50 items-left pt-25 pl-10">
+        <div class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4">
             <!-- dashboard side bar -->
             <div class="flex flex-row">
                 <img src="..\assets\icons\dashboard.png" alt="dashboard icon" class="w-5 h-5 mr-2"> 
@@ -34,8 +34,37 @@
             </div>
         </div>
         <!-- header -->
-        <div class="flex flex-row bg-white-200 h-25 justify-self-right w-screen items-center border-b border-b-gray-200">
-            <h1 class="text-[40px] font-bold">Dashboard</h1>
+        <div class="bg-white-200 col-span-4 items-center border-b border-b-black-200 w-full flex flex-row h-fit">
+            <div><h1 class="text-[30px] font-bold">Dashboard</h1></div>
+            <div><img src="..\assets\icons\notify.png" alt="notify icon" class="w-8"></div>
+            <div><img src="..\assets\icons\new-email.png" alt="new email icon" class="w-8"></div>
+            <div class="flex flex-row">
+                <img src="..\assets\icons\profile.png" alt="user icon" class="w-10 mr-2">
+                <div>
+                    <h2 class="font-bold">User Name</h2>
+                    <h3 class="text-sm">axyz@gmail.com</h3>
+                </div>
+            </div>
+        </div>
+        <!-- overview -->
+        <div class="col-span-4 row-span-1 flex flex-row items-center border">
+            <div>
+                <div><h2>Projects</h2></div>
+                <div class="flex flex-row">
+                    <div class="border-r border-r-black-100"><p> 6 <br> In Progress </p></div>
+                    <div class="border-r border-r-black-100"><p> 8 <br> Upcoming </p></div>
+                    <div class="border-r border-r-black-100"><p> 2 <br> On hold </p></div>
+                    <div><p> 16 <br> Total Projects</p></div>
+                </div>
+            </div>
+            <div>
+                <div><h2>22 July 2024</h2></div>
+                <div><button>Add Project</button></div>
+                <div><button>Remove Project</button></div>
+            </div>
+        </div>
+        <!-- main content -->
+        <div class="col-span-4 row-span-2 border">
         </div>
     </div>
 </body>
