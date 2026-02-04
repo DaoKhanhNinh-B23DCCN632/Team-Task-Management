@@ -1,86 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\assets\css\dashboard.css">
-</head>
-<body>
-    <div class="border border-gray-200 grid grid-flow-col grid-cols-[50_1fr_1fr_1fr_1fr] grid-rows-[80px_120px_200px_1fr] min-h-screen">
-        <!---------------------------- 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="..\assets\css\dashboard.css" />
+  </head>
+  <body>
+    <div
+      class="border border-gray-200 grid grid-flow-col grid-cols-[50_1fr_1fr_1fr_1fr] grid-rows-[80px_80px_1fr_1fr] min-h-screen"
+    >
+      <!---------------------------- 
         side bar  
         ------------------------------>
-        <div class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4 @md: pl-10 pr-10 w-50">
-            <!-- dashboard side bar -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\dashboard.png" alt="dashboard icon" class="w-5 h-5 mr-2"> 
-                <a href="http://localhost:5173/frontend/pages/dashboard.html">Dashboard</a>
-            </div>
-            <br>
-            <!-- projile -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\profile.png" alt="profile icon" class="w-5 h-5 mr-2">
-                <a href="http://localhost:5173/frontend/pages/update_per_info.html">Profile</a>
-            </div>
-            <br>
-            <!-- project -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\project.png" alt="project icon" class="w-5 h-5 mr-2">
-                <a href="">Project</a>
-            </div>
-            <br>
-            <!-- calendar -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\calendar.png" alt="project icon" class="w-5 h-5 mr-2">
-                <a href="">Calendar</a>
-            </div>
+      <div
+        class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4 @md: pl-10 pr-10 w-50"
+      >
+        <!-- dashboard side bar -->
+        <div class="flex flex-row">
+          <img
+            src="..\assets\icons\dashboard.png"
+            alt="dashboard icon"
+            class="w-5 h-5 mr-2"
+          />
+          <a href="http://localhost:5173/frontend/pages/dashboard.html"
+            >Dashboard</a
+          >
         </div>
-        <!----------------------- 
+        <br />
+        <!-- projile -->
+        <div class="flex flex-row">
+          <img
+            src="..\assets\icons\profile.png"
+            alt="profile icon"
+            class="w-5 h-5 mr-2"
+          />
+          <a href="http://localhost:5173/frontend/pages/update_per_info.html"
+            >Profile</a
+          >
+        </div>
+        <br />
+        <!-- project -->
+        <div class="flex flex-row">
+          <img
+            src="..\assets\icons\project.png"
+            alt="project icon"
+            class="w-5 h-5 mr-2"
+          />
+          <a href="http://localhost:5173/frontend/pages/project.html">Project</a>
+        </div>
+        <br />
+        <!-- calendar -->
+        <div class="flex flex-row">
+          <img
+            src="..\assets\icons\calendar.png"
+            alt="project icon"
+            class="w-5 h-5 mr-2"
+          />
+          <a href="">Calendar</a>
+        </div>
+      </div>
+      <!----------------------- 
         header 
         ------------------------->
-        <div class="bg-white-200 col-span-4 items-center border-white flex flex-row p-10 justify-between w-[1369px]">
-            <div><h1 class="text-[30px] font-bold">Project</h1></div>
-            <div class="border p-3 bg-black rounded-md">
-                <div><a href=""><span class="text-white">+ Create new project</span></a></div>
-            </div>
+      <div
+        class="bg-white-200 col-span-4 items-center border-white flex flex-row p-10 justify-between w-[1369px]"
+      >
+        <div><h1 class="text-[30px] font-bold">Project</h1></div>
+        <div class="border p-3 bg-black rounded-md">
+          <div>
+            <a href=""><span class="text-white">+ Create new project</span></a>
+          </div>
         </div>
-        <!------------------------ 
+      </div>
+      <!------------------------ 
         overview 
         ------------------------->
-        <div class="col-span-4 row-span-1 flex flex-row items-center border-white-100 rounded-xl mt-2 ml-4 mr-4 p-10 bg-gray-100 shadow-xl justify-between w-[1356px]">
-            
+      <div class="col-span-4 row-span-1 flex flex-row items-center rounded-xl mt-2 ml-4 mr-4 p-10 w-[1356px] h-20">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-auto">
+            <img src="..\assets\icons\search.png" alt="search icon" class="h-5 w-5" />
+          </div>
+          <input
+            type="text"
+            class="pl-10 pr-3 py-2 border border-gray-200 rounded-xl w-100"
+            placeholder="Search"
+          />
         </div>
-        <!-------------------------
+      </div>
+      <!-------------------------
          main content 
          ------------------------->
-         <!----------------------- 
-         in progress 
-         ------------------------->
-        <div class="col-span-4 row-span-1 border-white flex flex-col mt-2 p-10">
-            <div><h2 class="font-bold text-[20px]">In progress</h2></div>
-            <div class="flex flex-row">
-                <div class="border-white rounded-xl shadow-xl/20 mr-4 h-40 text-center p-5 w-[310px]">
-                    <h3>January 10, 2024 - July 30, 2024</h3> <br>
-                    <a href=""><span class="font-bold text-[20px]">TourO Web Development</span></a>
-                    <h3>Prototyping</h3>
-                </div>
-                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 mr-4 w-[333px]">
-                    <h3>February 12, 2024 - August 12, 2024</h3> <br>
-                    <a href=""> <span class="font-bold text-[20px]">Dashboard Portal</span></a>
-                    <h3>Phase - III</h3>
-                </div>
-                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 mr-4 w-[330px]">
-                    <h3>March 20, 2023 - August 20, 2024</h3> <br>
-                    <a href=""><span class="font-bold text-[20px]">Designing</span></a>
-                    <h3>Testing</h3>
-                </div>
-                <div class="border-white rounded-xl shadow-xl/20 text-center p-5 h-40 w-[320px]">
-                    <h3>July 10, 2024 - July 12, 2025</h3> <br>
-                    <a href=""><span class="font-bold text-[20px]">Project</span></a>
-                    <h3>User requirement gathering</h3>
-                </div>
-            </div>
+      <div class="col-start-2 col-span-4 row-start-3 row-end-3 flex flex-row pl-20 pr-20 justify-between">
+        <div class="row-start-3 row-end-3 col-start-2 col-end-2 border-2 border-gray-200 w-90 p-5 rounded-xl">
+          <a href=""><span class="font-bold">Phát triển nền tảng đặt tour trực tuyến</span></a>
+          <p>Thiết kế và triển khai một nền tảng web mới cho phép người</p>
         </div>
+        <div class="row-start-3 row-end-3 col-start-3 col-end-3 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Tối ưu hóa hiệu suất ứng dụng di động</span></a>
+        </div>
+        <div class="row-start-3 row-end-3 col-start-4 col-end-4 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Hệ thống quản lý khách hàng nội bộ</span></a>
+        </div>
+        <div class="row-start-3 row-end-3 col-start-5 col-end-5 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Triển khai cổng thanh toán quốc tế</span></a>
+        </div>
+      </div>
+      <div class="col-start-2 col-span-4 row-start-4 row-end-4 flex flex-row pl-20 pr-20 mt-10 justify-between">
+        <div class="row-start-4 row-end-4 col-start-2 col-end-2 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span class="font-bold">Nghiên cứu và phát triển AI Chatbot</span></a>
+          <p>Thiết kế và triển khai một nền tảng web mới cho phép người</p>
+        </div>
+        <div class="row-start-4 row-end-4 col-start-3 col-end-3 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Phân tích dữ liệu và báo cáo doanh thu</span></a>
+        </div>
+        <div class="row-start-4 row-end-4 col-start-4 col-end-4 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Cải tiến trải nghiệm người dùng trên Website</span></a>
+        </div>
+        <div class="row-start-4 row-end-4 col-start-5 col-end-5 border w-90 p-5 border-2 border-gray-200 rounded-xl">
+          <a href=""><span>Xây dựng module Blog và tin tức</span></a>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
