@@ -39,7 +39,7 @@
         header 
         ------------------------->
         <div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-[1381px]">
-            <div><h1 class="text-[20px] font-bold">Create new project</h1></div>
+            <div><h1 class="text-[20px] font-bold">Create new task</h1></div>
         </div>
         <!----------------------------- 
         update_per_info 
@@ -47,18 +47,18 @@
         <div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-150 p-5 border-2 border-gray-200 rounded-md">
             <div>
                 <div class="pb-2 border-b border-b-gray-300 mb-5">
-                    <h2 class="font-bold text-[20px]">New Project Information</h2>
+                    <h2 class="font-bold text-[20px]">New Task Information</h2>
                 </div>
                 
                 <div>
                     <form>
-                        <label for="project_name">Project Name</label><br>
-                        <input type="text" name="project_name" id="project_name" placeholder="Enter project name" class="border-2 border-gray-200 rounded-md w-139">
+                        <label for="project_name">Task Name</label><br>
+                        <input type="text" name="project_name" id="project_name" placeholder="Enter task name" class="border-2 border-gray-200 rounded-md w-139">
                     </form>
                 </div>
                 <div class="mt-5">
                     <label for="description">Description</label> <br>
-                    <textarea name="description" id="description" placeholder="Describe project in detail..." class="border-2 border-gray-200  w-139 h-50 rounded-md" spellcheck></textarea>
+                    <textarea name="description" id="description" placeholder="Describe task in detail..." class="border-2 border-gray-200  w-139 h-50 rounded-md" spellcheck></textarea>
                 </div>
                 
                 <div class="mt-5">
@@ -68,15 +68,13 @@
                     </form>
                 </div>
                 
-                <div class="mt-5 flex flex-row justify-between">
-                    <div>
-                        <label for="start_date">Start Date</label> <br>
-                        <input type="text" name="start_date" id="start_date" class="border-2 border-gray-200 rounded-md w-60">
-                    </div>
-                    <div>
-                        <label for="end_date">End Date</label><br>
-                        <input type="text" name="end_date" id="end_date" class="border-2 border-gray-200 rounded-md w-60">
-                    </div>
+                <div class="mt-5">
+                    <label for="assign_to">Assign to</label> <br>
+                    <select name="assign_to" id="assign_to" class="border-2 border-gray-200 w-139 rounded-md">
+                        <option value="Alice Nguyễn">Alice Nguyễn</option>
+                        <option value="Bảo Trần">Bảo Trần</option>
+                        <option value="Cường Lê">Cường Lê</option>
+                    </select>
                 </div>
             </div>
             <!-- ---------------------------- -->
