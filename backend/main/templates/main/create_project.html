@@ -47,8 +47,8 @@ update_per_info
     </div>
     <!-- ---------------------------- -->
     <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-        <div><button class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></button></div>
-        <div><button class="border border-gray-200 rounded-md p-1"><a href=""><span class="text-[10px]">Save</span></a></button></div>
+        <div><a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></a></div>
+        <div><a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Save</span></a></div>
     </div>
 </div>
 {% endblock %}
