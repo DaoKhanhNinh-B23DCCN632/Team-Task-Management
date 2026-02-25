@@ -1,91 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\assets\css\dashboard.css">
-</head>
-<body>
-    <div class="border border-gray-200 grid grid-flow-col grid-cols-[50_1fr_1fr_1fr_1fr] grid-rows-[80px_120px_200px_1fr] min-h-screen">
-        <!---------------------------- 
-        side bar  
-        ------------------------------>
-        <div class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4 @md: pl-10 pr-10 w-50">
-            <!-- dashboard side bar -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\dashboard.png" alt="dashboard icon" class="w-5 h-5 mr-2"> 
-                <a href="http://localhost:5173/frontend/pages/dashboard.html">Dashboard</a>
-            </div>
-            <br>
-            <!-- projile -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\profile.png" alt="profile icon" class="w-5 h-5 mr-2">
-                <a href="http://localhost:5173/frontend/pages/update_per_info.html">Profile</a>
-            </div>
-            <br>
-            <!-- project -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\project.png" alt="project icon" class="w-5 h-5 mr-2">
-                <a href="http://localhost:5173/frontend/pages/project.html">Project</a>
-            </div>
-            <br>
-            <!-- calendar -->
-            <div class="flex flex-row">
-                <img src="..\assets\icons\logout.png" alt="project icon" class="w-5 h-5 mr-2">
-                <a href="http://localhost:5173/frontend/pages/login.html">Log out</a>
-            </div>
+{% extends 'side_bar.html' %}
+{% load static %}
+{% block content %}
+<!----------------------- 
+header 
+------------------------->
+<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-[1375px]">
+    <div><h1 class="text-[20px] font-bold">Create new project</h1></div>
+</div>
+<!----------------------------- 
+update_per_info 
+------------------------------>
+<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-[430px] p-5 border-2 border-gray-200 rounded-md">
+    <div>
+        <div class="pb-2 border-b border-b-gray-300 mb-5">
+            <h2 class="font-bold text-[20px]">New Project Information</h2>
         </div>
-        <!----------------------- 
-        header 
-        ------------------------->
-        <div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-[1381px]">
-            <div><h1 class="text-[20px] font-bold">Create new project</h1></div>
+        
+        <div>
+            <form>
+                <label for="project_name">Project Name</label><br>
+                <input type="text" name="project_name" id="project_name" placeholder="Enter project name" class="border-2 border-gray-200 rounded-md w-[400px]">
+            </form>
         </div>
-        <!----------------------------- 
-        update_per_info 
-        ------------------------------>
-        <div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-150 p-5 border-2 border-gray-200 rounded-md">
+        <div class="mt-5">
+            <label for="description">Description</label> <br>
+            <textarea name="description" id="description" placeholder="Describe project in detail..." class="border-2 border-gray-200  w-[400px] h-48 rounded-md" spellcheck></textarea>
+        </div>
+        
+        <div class="mt-5">
+            <form>
+                <label for="deadline">Deadline</label><br>
+                <input type="text" name="deadline" id="deadline" class="border-2 border-gray-200 w-[400px] rounded-md">
+            </form>
+        </div>
+        
+        <div class="mt-5 flex flex-row justify-between">
             <div>
-                <div class="pb-2 border-b border-b-gray-300 mb-5">
-                    <h2 class="font-bold text-[20px]">New Project Information</h2>
-                </div>
-                
-                <div>
-                    <form>
-                        <label for="project_name">Project Name</label><br>
-                        <input type="text" name="project_name" id="project_name" placeholder="Enter project name" class="border-2 border-gray-200 rounded-md w-139">
-                    </form>
-                </div>
-                <div class="mt-5">
-                    <label for="description">Description</label> <br>
-                    <textarea name="description" id="description" placeholder="Describe project in detail..." class="border-2 border-gray-200  w-139 h-50 rounded-md" spellcheck></textarea>
-                </div>
-                
-                <div class="mt-5">
-                    <form>
-                        <label for="deadline">Deadline</label><br>
-                        <input type="text" name="deadline" id="deadline" class="border-2 border-gray-200 w-139 rounded-md">
-                    </form>
-                </div>
-                
-                <div class="mt-5 flex flex-row justify-between">
-                    <div>
-                        <label for="start_date">Start Date</label> <br>
-                        <input type="text" name="start_date" id="start_date" class="border-2 border-gray-200 rounded-md w-60">
-                    </div>
-                    <div>
-                        <label for="end_date">End Date</label><br>
-                        <input type="text" name="end_date" id="end_date" class="border-2 border-gray-200 rounded-md w-60">
-                    </div>
-                </div>
+                <label for="start_date">Start Date</label> <br>
+                <input type="text" name="start_date" id="start_date" class="border-2 border-gray-200 rounded-md w-60">
             </div>
-            <!-- ---------------------------- -->
-            <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-                <div><button class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></button></div>
-                <div><button class="border border-gray-200 rounded-md p-1"><a href=""><span class="text-[10px]">Save</span></a></button></div>
+            <div>
+                <label for="end_date">End Date</label><br>
+                <input type="text" name="end_date" id="end_date" class="border-2 border-gray-200 rounded-md w-60">
             </div>
         </div>
-
     </div>
-</body>
-</html>
+    <!-- ---------------------------- -->
+    <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
+        <div><button class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></button></div>
+        <div><button class="border border-gray-200 rounded-md p-1"><a href=""><span class="text-[10px]">Save</span></a></button></div>
+    </div>
+</div>
+{% endblock %}
+    

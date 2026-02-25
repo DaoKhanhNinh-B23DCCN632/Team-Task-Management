@@ -1,230 +1,174 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="..\assets\css\dashboard.css" />
-  </head>
-  <body>
-    <div
-      class="border border-gray-200 grid grid-flow-col grid-cols-[50_1fr_1fr_1fr_1fr] grid-rows-[80px_80px_1fr_1fr] min-h-screen"
-    >
-      <!---------------------------- 
-        side bar  
-        ------------------------------>
-      <div
-        class="bg-white-200 border-r border-r-gray-200 pt-25 pl-10 pr-10 row-span-4 @md: pl-10 pr-10 w-50"
-      >
-        <!-- dashboard side bar -->
-        <div class="flex flex-row">
-          <img
-            src="..\assets\icons\dashboard.png"
-            alt="dashboard icon"
-            class="w-5 h-5 mr-2"
-          />
-          <a href="http://localhost:5173/frontend/pages/dashboard.html"
-            >Dashboard</a
-          >
-        </div>
-        <br />
-        <!-- projile -->
-        <div class="flex flex-row">
-          <img
-            src="..\assets\icons\profile.png"
-            alt="profile icon"
-            class="w-5 h-5 mr-2"
-          />
-          <a href="http://localhost:5173/frontend/pages/update_per_info.html"
-            >Profile</a
-          >
-        </div>
-        <br />
-        <!-- project -->
-        <div class="flex flex-row">
-          <img
-            src="..\assets\icons\project.png"
-            alt="project icon"
-            class="w-5 h-5 mr-2"
-          />
-          <a href="http://localhost:5173/frontend/pages/project.html">Project</a>
-        </div>
-        <br />
-        <!-- calendar -->
-        <div class="flex flex-row">
-            <img src="..\assets\icons\logout.png" alt="project icon" class="w-5 h-5 mr-2">
-            <a href="http://localhost:5173/frontend/pages/login.html">Log out</a>
-        </div>
-      </div>
-      <!----------------------- 
-        header 
-        ------------------------->
-      <div
-        class="bg-white-200 col-span-4 items-center border-white flex flex-row p-10 justify-between w-[1369px]"
-      >
-        <div><h1 class="text-[30px] font-bold">Project</h1></div>
-        <div class="flex flex-row gap-1">
-          <div class="border p-3 bg-black rounded-md">
-            <div><a href="http://localhost:5173/frontend/pages/create_task.html"><span class="text-white">+ Create task</span></a></div>
-          </div>
-          <div class="flex flex-row border-2 border-gray-200 items-center w-30 justify-center rounded-md">
-            <div><img src="..\assets\icons\comment.jpg" alt="comment icon" class="w-5"></div>
-            <div><a href=""><span>Comment</span></a></div>
-          </div>
-        </div>
-      </div>
-      <!------------------------ 
-        overview 
-        ------------------------->
-      <div class="col-span-4 row-span-1 flex flex-row items-center rounded-xl mt-2 ml-4 mr-4 p-10 w-[1356px] h-20">
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-auto">
-            <img src="..\assets\icons\search.png" alt="search icon" class="h-5 w-5" />
-          </div>
-          <input
-            type="text"
-            class="pl-10 pr-3 py-2 border border-gray-200 rounded-xl w-100"
-            placeholder="Search"
-          />
-        </div>
-      </div>
-      <!-------------------------
-         main content 
-         ------------------------->
-        <div class="border border-gray-200 row-start-3 row-span-2 col-start-2 col-span-4 p-5 ml-5 rounded-2xl">
-            <table class="table-fixed w-full border-separate border-spacing-x-0 border-spacing-y-7">
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Assignee</th>
-                        <th>Status</th>
-                        <th>Expiration Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tạo kịch bản kiểm thử người dùng và xác minh chức năng đăng nhập</td>
-                        <td class="text-center">Alice Nguyễn</td>
-                        <td class="text-center">Pending</td>
-                        <td class="text-center">2024-07-25</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Thiết kế wireframe cho trang chủ và các thành phần UI chính</td>
-                        <td class="text-center">Bảo Trần</td>
-                        <td class="text-center">In processing</td>
-                        <td class="text-center">2024-07-28</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Phân tích yêu cầu khách hàng và lập tài liệu chi tiết cho phiên bản 2.0</td>
-                        <td class="text-center">Cường Lê</td>
-                        <td class="text-center">Completed</td>
-                        <td class="text-center">2024-07-20</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Triển khai API xác thực người dùng và tích hợp bảo mật OAuth2.</td>
-                        <td class="text-center">Dũng Hoàng</td>
-                        <td class="text-center">In Processing</td>
-                        <td class="text-center">2024-07-30</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kiểm tra hiệu suất ứng dụng trên các thiết bị di động khác nhau.</td>
-                        <td class="text-center">Mai Phạm</td>
-                        <td class="text-center">Pending</td>
-                        <td class="text-center">2024-08-01</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Phát triển module quản lý kho hàng và tích hợp thanh toán trực tuyến.</td>
-                        <td class="text-center">Long Đỗ</td>
-                        <td class="text-center">In processing</td>
-                        <td class="text-center">2024-08-05</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cập nhật tài liệu kĩ thuật và hướng dẫn sử dụng cho người dùng cuối.</td>
-                        <td class="text-center">Thảo Bùi</td>
-                        <td class="text-center">Pending</td>
-                        <td class="text-center">2024-08-10</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fix các lỗi bảo mật cấp độ cao phát hiện trong quá trình Pentest</td>
-                        <td class="text-center">Vân Anh</td>
-                        <td class="text-center">Pending</td>
-                        <td class="text-center">2024-07-22</td>
-                        <td class="text-center">
-                            <div>
-                                <select class="border border-gray-200 rounded-md">
-                                    <option value="pending">Pending</option>
-                                    <option value="in processing">In Processing</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+{% extends 'side_bar.html' %}
+{% load static %}
+{% block content %}
+<!----------------------- 
+  header 
+  ------------------------->
+<div
+  class="bg-white col-span-4 items-center border-white flex flex-row p-10 justify-between w-[1363px]"
+>
+  <div><h1 class="text-[30px] font-bold">Project</h1></div>
+  <div class="flex flex-row gap-1">
+    <div class="border p-3 bg-black rounded-md">
+      <div><a href="{% url 'create_task' %}"><span class="text-white">+ Create task</span></a></div>
     </div>
-  </body>
-</html>
+    <div class="flex flex-row border-2 border-gray-200 items-center w-32 justify-center rounded-md">
+      <div><img src="{% static 'icons/comment.jpg' %}" alt="comment icon" class="w-5"></div>
+      <div><a href=""><span>Comment</span></a></div>
+    </div>
+  </div>
+</div>
+<!------------------------ 
+  overview 
+  ------------------------->
+<div class="col-span-4 row-span-1 flex flex-row items-center rounded-xl mt-2 ml-3 mr-4 p-2 w-[1356px] h-20">
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-auto">
+      <img src="{% static 'icons/search.png' %}" alt="search icon" class="h-5 w-5" />
+    </div>
+    <input
+      type="text"
+      class="pl-10 pr-3 py-2 border border-gray-200 rounded-xl w-[400px]"
+      placeholder="Search"
+    />
+  </div>
+</div>
+<!-------------------------
+    main content 
+    ------------------------->
+  <div class="border border-gray-200 row-start-3 row-span-2 col-start-2 col-span-4 p-5 ml-5 mt-[-50px] rounded-2xl w-[1335px]">
+      <table class="table-fixed w-full border-separate border-spacing-x-0 border-spacing-y-7">
+          <thead>
+              <tr>
+                  <th>Task</th>
+                  <th>Assignee</th>
+                  <th>Status</th>
+                  <th>Expiration Date</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Tạo kịch bản kiểm thử người dùng và xác minh chức năng đăng nhập</td>
+                  <td class="text-center">Alice Nguyễn</td>
+                  <td class="text-center">Pending</td>
+                  <td class="text-center">2024-07-25</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Thiết kế wireframe cho trang chủ và các thành phần UI chính</td>
+                  <td class="text-center">Bảo Trần</td>
+                  <td class="text-center">In processing</td>
+                  <td class="text-center">2024-07-28</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Phân tích yêu cầu khách hàng và lập tài liệu chi tiết cho phiên bản 2.0</td>
+                  <td class="text-center">Cường Lê</td>
+                  <td class="text-center">Completed</td>
+                  <td class="text-center">2024-07-20</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Triển khai API xác thực người dùng và tích hợp bảo mật OAuth2.</td>
+                  <td class="text-center">Dũng Hoàng</td>
+                  <td class="text-center">In Processing</td>
+                  <td class="text-center">2024-07-30</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Kiểm tra hiệu suất ứng dụng trên các thiết bị di động khác nhau.</td>
+                  <td class="text-center">Mai Phạm</td>
+                  <td class="text-center">Pending</td>
+                  <td class="text-center">2024-08-01</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Phát triển module quản lý kho hàng và tích hợp thanh toán trực tuyến.</td>
+                  <td class="text-center">Long Đỗ</td>
+                  <td class="text-center">In processing</td>
+                  <td class="text-center">2024-08-05</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Cập nhật tài liệu kĩ thuật và hướng dẫn sử dụng cho người dùng cuối.</td>
+                  <td class="text-center">Thảo Bùi</td>
+                  <td class="text-center">Pending</td>
+                  <td class="text-center">2024-08-10</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Fix các lỗi bảo mật cấp độ cao phát hiện trong quá trình Pentest</td>
+                  <td class="text-center">Vân Anh</td>
+                  <td class="text-center">Pending</td>
+                  <td class="text-center">2024-07-22</td>
+                  <td class="text-center">
+                      <div>
+                          <select class="border border-gray-200 rounded-md">
+                              <option value="pending">Pending</option>
+                              <option value="in processing">In Processing</option>
+                              <option value="completed">Completed</option>
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+{% endblock %}
