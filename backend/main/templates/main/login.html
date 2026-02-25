@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    {% block content %}
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="flex flex-col w-96 justify-self-center p-[10px] shadow-xl"> 
+        <h1 class="text-[30px] font-bold">Sign In</h1>
+        <br>
+        <form>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pointer-events-none flex items-center ml-1"><img src="{% static 'icons/user.png' %}" alt="user" class="w-4"></div>
+            <div><input type="text" placeholder="Username" class="w-[269px] pl-6 border-2 border-gray-200 rounded-md"/></div>
+          </div>
+          <br>
+          <!-- -------------------------------------------- -->
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pointer-events-none flex items-center ml-1"><img  src="{% static 'icons/password.png' %}" alt="" class="w-4"></div>
+            <div><input type="text" placeholder="Password" class="w-[269px] pl-6 border-2 border-gray-200 rounded-md"/></div>
+          </div>     
+        </form>
+        <a href="" class="text-right text-sm underline text-blue-400">Forgot password ?</a>
+        <br>
+        <button class="border-2 border-solid bg-black rounded-md hover:bg-black-700"><a href="http://localhost:5173/frontend/pages/dashboard.html"><span style="color: white;">Sign In</span></a></button>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
