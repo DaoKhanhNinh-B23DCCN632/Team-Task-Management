@@ -11,45 +11,42 @@ header
 update_per_info 
 ------------------------------>
 <div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-[430px] p-5 border-2 border-gray-200 rounded-md">
-    <div>
+    <form action="" method="post"> 
+        {% csrf_token %}
         <div class="pb-2 border-b border-b-gray-300 mb-5">
             <h2 class="font-bold text-[20px]">New Project Information</h2>
         </div>
-        
-        <div>
-            <form>
-                <label for="project_name">Project Name</label><br>
-                <input type="text" name="project_name" id="project_name" placeholder="Enter project name" class="border-2 border-gray-200 rounded-md w-[400px]">
-            </form>
-        </div>
-        <div class="mt-5">
-            <label for="description">Description</label> <br>
-            <textarea name="description" id="description" placeholder="Describe project in detail..." class="border-2 border-gray-200  w-[400px] h-48 rounded-md" spellcheck></textarea>
-        </div>
-        
-        <div class="mt-5">
-            <form>
-                <label for="deadline">Deadline</label><br>
-                <input type="text" name="deadline" id="deadline" class="border-2 border-gray-200 w-[400px] rounded-md">
-            </form>
-        </div>
-        
+        <label for="project_name">Project name:</label> <br>
+        {{form.project_name}} 
+        <br> <br>
+        <label for="description">Description</label>
+        {{form.description}}
         <div class="mt-5 flex flex-row justify-between">
             <div>
                 <label for="start_date">Start Date</label> <br>
-                <input type="text" name="start_date" id="start_date" class="border-2 border-gray-200 rounded-md w-60">
+                {{form.start_date}}
             </div>
             <div>
                 <label for="end_date">End Date</label><br>
-                <input type="text" name="end_date" id="end_date" class="border-2 border-gray-200 rounded-md w-60">
+                {{form.end_date}}
             </div>
         </div>
-    </div>
-    <!-- ---------------------------- -->
-    <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-        <div><a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></a></div>
-        <div><a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Save</span></a></div>
-    </div>
+        <br>
+        <label for="created_by">Created by</label>
+        {{form.created_by}}
+        <!-- {{form.as_p}}  -->
+        <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
+            <div><input type="submit" value="Save" class="border border-gray-200 rounded-md bg-black text-white w-[40px]"></div>
+            <div class="border border-gray-200 rounded-md bg-black text-white w-[40px] h-[20px] text-center"><a href="{% url 'project' %}"><span class="text-[10px]">Cancel</span></a></div>
+        </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <h3 style="color: red;">{{message}}</h3>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
 </div>
 {% endblock %}
     

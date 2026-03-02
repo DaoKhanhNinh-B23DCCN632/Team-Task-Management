@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
+from .forms import ProjectForm
 
 def login(request): 
     if request.method == 'POST': 
@@ -23,8 +24,21 @@ def dashboard(request):
 
 def change_password(request): 
     return render(request, 'main/change_password.html') 
+
 def create_project(request): 
-    return render(request, 'main/create_project.html') 
+    form = ProjectForm() 
+    if request.method == 'POST': 
+        form = ProjectForm(request.POST) 
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request, "New project was created successfully!")
+            # return redirect('project')
+    context = {'form': form}
+    return render(request, 'main/create_project.html', context=context) 
+
+
+
+
 def create_task(request): 
     return render(request, 'main/create_task.html')
 def project(request): 
