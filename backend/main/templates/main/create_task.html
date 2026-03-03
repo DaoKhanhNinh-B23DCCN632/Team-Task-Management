@@ -11,42 +11,46 @@ header
 update_per_info 
 ------------------------------>
 <div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-[432px] p-5 border-2 border-gray-200 rounded-md">
-    <div>
-        <div class="pb-2 border-b border-b-gray-300 mb-5">
-            <h2 class="font-bold text-[20px]">New Task Information</h2>
-        </div>
-        
-        <div>
-            <form>
-                <label for="project_name">Task Name</label><br>
-                <input type="text" name="project_name" id="project_name" placeholder="Enter task name" class="border-2 border-gray-200 rounded-md w-[400px]">
-            </form>
-        </div>
-        <div class="mt-5">
-            <label for="description">Description</label> <br>
-            <textarea name="description" id="description" placeholder="Describe task in detail..." class="border-2 border-gray-200  w-[400px] h-48 rounded-md" spellcheck></textarea>
-        </div>
-        
-        <div class="mt-5">
-            <form>
-                <label for="deadline">Deadline</label><br>
-                <input type="text" name="deadline" id="deadline" class="border-2 border-gray-200 w-[400px] rounded-md">
-            </form>
-        </div>
-        
-        <div class="mt-5">
-            <label for="assign_to">Assign to</label> <br>
-            <select name="assign_to" id="assign_to" class="border-2 border-gray-200 w-[400px] rounded-md">
-                <option value="Alice Nguyễn">Alice Nguyễn</option>
-                <option value="Bảo Trần">Bảo Trần</option>
-                <option value="Cường Lê">Cường Lê</option>
-            </select>
-        </div>
+    <div class="pb-2 border-b border-b-gray-300 mb-5">
+        <h2 class="font-bold text-[20px]">New Task Information</h2>
     </div>
-    <!-- ---------------------------- -->
-    <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-        <div><a href="{% url 'task' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Cancel</span></a></div>
-        <div><a href="{% url 'task' %}" class="border border-gray-200 rounded-md p-1"><span class="text-[10px]">Save</span></a></div>
-    </div>
-</div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="project_name">Project name:</label>
+        {{form.project_id}}
+        <br><br>
+        <label for="task_name">Task name:</label>
+        {{ form.task_name }}
+        <br><br>
+        <label for="description">Description:</label>
+        {{ form.description }}
+        <br><br>
+        <div class="flex flex-row justify-between">
+            <div>
+                <label for="status">Status:</label>
+                {{ form.status }}
+            </div>
+            <div>
+                <label for="deadline">Dealine:</label>
+                {{ form.deadline }} 
+            </div>
+        </div>
+        <br>
+        <label for="assign_to">Assign to:</label>
+        {{form.assign_to}}
+        <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
+            <a href="{% url 'task' %}" class="border border-gray-200 rounded-md text-center p-1">Cancel</a>
+            <input type="submit" value="Save" class="border border-gray-200 rounded-md p-1 bg bg-black text-white">
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <h3 style="color: red;">{{ message }}</h3>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- {{form}} -->
+    </form>
+</div> 
 {% endblock %}

@@ -1,3 +1,4 @@
+#type:ignore
 from django.db import models
 from django.contrib.auth.models import AbstractUser 
 
@@ -25,17 +26,28 @@ class Project(models.Model):
         return self.project_name
 
 class Task(models.Model): 
+    status_dict = {
+        'In processing': 'In processing', 
+        'Completed': 'Completed', 
+        'Pending': 'Pending'
+    }
     task_id = models.AutoField(primary_key=True) 
     task_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True) 
-    status = models.CharField(max_length=50, blank=True, null=True) 
+    status = models.CharField(max_length=50, blank=True, null=True, choices=status_dict) 
     deadline = models.DateTimeField(blank=True, null=True)
     project_id = models.ForeignKey(
         Project, 
         on_delete=models.CASCADE, 
         related_name='tasks' 
     )
-
+    assign_to = models.ForeignKey(
+        Users, 
+        on_delete=models.CASCADE, 
+        related_name='task_users', 
+        blank=True, 
+        null=True
+    )
     def __str__(self):
         return self.task_name
 

@@ -1,7 +1,8 @@
+#type:ignore
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
-from .forms import ProjectForm
+from .forms import ProjectForm, TaskForm
 
 def login(request): 
     if request.method == 'POST': 
@@ -36,11 +37,15 @@ def create_project(request):
     context = {'form': form}
     return render(request, 'main/create_project.html', context=context) 
 
-
-
-
-def create_task(request): 
-    return render(request, 'main/create_task.html')
+def create_task(request):
+    form = TaskForm()
+    if request.method == 'POST': 
+        form = TaskForm(request.POST) 
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request, "Task was created successfully!") 
+    context = {'form': form}
+    return render(request, 'main/create_task.html', context=context)
 def project(request): 
     return render(request, 'main/project.html')
 def task(request): 
