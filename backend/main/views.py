@@ -1,9 +1,12 @@
 #type:ignore
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib import messages
-from .forms import ProjectForm, TaskForm
-
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import ProjectForm, TaskForm, ProfileForm, AddMemberForm
+from .models import Users, Project
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 def login(request): 
     if request.method == 'POST': 
         username = request.POST['username'] 
@@ -18,13 +21,38 @@ def login(request):
             messages.error(request, 'Username or Password incorrect!')
     return render(request, 'main/login.html')
 
+@login_required
 
 def dashboard(request): 
     return render(request, 'main/dashboard.html')
 
-
-def change_password(request): 
-    return render(request, 'main/change_password.html') 
+@login_required
+def change_password(request, pk):
+    user = Users.objects.get(id=pk)
+    form = PasswordChangeForm(user)
+    if request.user != user: 
+        return redirect('update_per_info', pk=user.pk)
+    if request.method == 'POST': 
+        form = PasswordChangeForm(user, request.POST) 
+        if form.is_valid(): 
+            user = form.save() 
+            update_session_auth_hash(request, user) 
+            messages.success(request, "Change password completed!")
+            return redirect('update_per_info', pk=user.pk) 
+    form.fields['old_password'].widget.attrs.update({
+        'class': 'border-2 border-gray-200 rounded-md w-[440px]', 
+        'placeholder': 'Enter your current password'
+    })
+    form.fields['new_password1'].widget.attrs.update({
+        'class': 'border-2 border-gray-200 rounded-md w-[440px]', 
+        'placeholder': 'Enter your new password'
+    })
+    form.fields['new_password2'].widget.attrs.update({
+        'class': 'border-2 border-gray-200 rounded-md w-[440px]', 
+        'placeholder': 'Enter your new password again'
+    })
+    context = {'form': form, 'user': user} 
+    return render(request, 'main/change_password.html', context=context) 
 
 def create_project(request): 
     form = ProjectForm() 
@@ -47,10 +75,70 @@ def create_task(request):
     context = {'form': form}
     return render(request, 'main/create_task.html', context=context)
 def project(request): 
-    return render(request, 'main/project.html')
-def task(request): 
-    return render(request, 'main/task.html')
-def update_per_info(request): 
-    return render(request, 'main/update_per_info.html')
+    projects = Project.objects.all() 
+
+    context = {'projects': projects}
+    return render(request, 'main/project.html', context=context)
+
+def task(request, pk):
+    tasks = Project.objects.get(project_id = pk)
+    context = {'tasks': tasks} 
+    return render(request, 'main/task.html', context=context)
+def update_per_info(request, pk):  
+    user = Users.objects.get(id=pk)
+    form = ProfileForm(instance=user) 
+    if request.method == 'POST': 
+        form = ProfileForm(request.POST, instance=user) 
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request, "Personal information is updated!")
+            return redirect('member') 
+    context = {'form': form}
+    return render(request, 'main/update_per_info.html', context=context)
+
+def member(request): 
+    users = Users.objects.all() 
+    context = {'users': users}
+    return render(request, 'main/member.html', context=context)
 
 
+def delete_member(request, pk): 
+    user = Users.objects.filter(id=pk).first() 
+
+    if not user: 
+        messages.warning(request, "User was deleted!")
+        return redirect('member')
+    if request.user.id == user.id: 
+        return HttpResponseForbidden("You cannot delete yourself!")
+    
+    if request.method == 'POST':  
+        user.delete() 
+        messages.success(request, "User is deleted successfully!")
+        redirect('member')
+    context = {'user': user}
+    return render(request, 'main/delete.html', context=context)
+
+
+def add_member(request): 
+    form = AddMemberForm() 
+    if request.method == 'POST': 
+        form = AddMemberForm(request.POST) 
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request, 'User is added successfully!') 
+            return redirect('member') 
+    context = {'form': form} 
+    return render(request, 'main/add_member.html', context=context)
+
+def update_project(request, pk): 
+    project = Project.objects.get(project_id=pk)
+    user = Users.objects.get(id = project.created_by.id)
+    form = ProjectForm(instance=project)
+    if request.method == 'POST': 
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid(): 
+            form.save() 
+            messages.success(request, "Project is updated successfully!")
+            return redirect('project')
+    context = {'form': form, 'user': user}
+    return render(request, 'main/update_project.html', context=context)

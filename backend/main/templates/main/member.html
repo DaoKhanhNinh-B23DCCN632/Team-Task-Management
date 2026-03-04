@@ -1,0 +1,42 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px] flex justify-between">
+    <div><h1 class="text-[20px] font-bold">Member of Team</h1></div>
+    <div><a href="{% url 'add_member' %}" class="border border-gray-200 bg bg-black text-white p-2 rounded-md">Add member</a></div>
+</div>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h3 style="color: red;">{{ message }}</h3>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="col-start-2 row-start-2 overflow-y-auto p-6">
+    {% for user in users %}
+
+        <div class="flex justify-between border border-gray-200 w-auto m-[20px] rounded-md p-10">
+            <div>
+                <h3>{{ user.full_name }}</h3>
+                <small>{{ user.role }}</small>
+            </div>
+            <div>
+                {% if request.user.role == 'Manager' or request.user.id == user.id %}
+                <a href="{% url 'update_per_info' user.id %} "  class="border border-gray-200 rounded-md bg bg-black text-white p-1">Update</a>
+                {% endif %}
+                {% if request.user.role == 'Manager' %}
+                    <a href="{% url 'delete_member' user.id %}" class="border border-gray-200 rounded-md bg bg-black text-white p-1">Delete</a>
+                {% endif %}
+            </div> 
+
+        </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,6 +1,6 @@
 #type: ignore
-from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select
-from .models import Project, Task
+from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput
+from .models import Project, Task, Users
 
 class ProjectForm(ModelForm): 
     class Meta:
@@ -21,6 +21,9 @@ class ProjectForm(ModelForm):
                 "class": "border-2 border-gray-200 rounded-md w-60"
             }),
             'created_by': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md'
+            }), 
+            'status_project': Select(attrs={
                 'class': 'border-2 border-gray-200 rounded-md'
             })
         }
@@ -43,3 +46,69 @@ class TaskForm(ModelForm):
                 'class': 'border-2 border-gray-200 rounded-md'
             })
         }
+
+class ProfileForm(ModelForm): 
+    class Meta: 
+        model = Users 
+        fields = [
+            'full_name', 
+            'gender', 
+            'date_of_birth', 
+            'role', 
+            'email', 
+            'username'
+        ] 
+        widgets = {
+            'full_name': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'gender': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'date_of_birth': DateTimeInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'role': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'email': EmailInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'username': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            })
+        }
+
+class AddMemberForm(ModelForm): 
+    class Meta: 
+        model = Users 
+        fields = [
+            'full_name', 
+            'gender', 
+            'date_of_birth', 
+            'role', 
+            'email', 
+            'username'
+        ] 
+        widgets = {
+            'full_name': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'gender': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'date_of_birth': DateTimeInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'role': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'email': EmailInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'username': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            })
+        }
+
+

@@ -1,11 +1,11 @@
-{% extends 'side_bar.html' %}
+{% extends 'side_bar_member.html' %}
 {% load static %}
 {% block content %}
 <!----------------------- 
   header 
   ------------------------->
 <div
-  class="bg-white col-span-4 items-center border-white flex flex-row p-10 justify-between w-[1360px]"
+  class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px] flex justify-between"
 >
   <div><h1 class="text-[30px] font-bold">Project</h1></div>
   <div class="border p-3 bg-black rounded-md">
@@ -14,10 +14,7 @@
     </div>
   </div>
 </div>
-<!------------------------ 
-  overview 
-  ------------------------->
-<div class="col-span-4 row-span-1 flex flex-row items-center rounded-xl mt-2 ml-4 mr-4 p-10 w-[1340px] h-20">
+<div class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px]">
   <div class="relative">
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-auto">
       <img src="{% static 'icons/search.png' %}" alt="search icon" class="h-5 w-5" />
@@ -29,37 +26,25 @@
     />
   </div>
 </div>
-<!-------------------------
-    main content 
-    ------------------------->
-<div class="col-start-2 col-span-4 row-start-3 row-end-3 flex flex-row pl-20 pr-20 justify-between mt-[-30px] ml-[-15px]">
-  <div class="row-start-3 row-end-3 col-start-2 col-end-2 border-2 border-gray-200 w-[300px] p-5 rounded-xl h-[200px]">
-    <a href="{% url 'task' %}"><span class="font-bold">Phát triển nền tảng đặt tour trực tuyến</span></a>
-    <p>Thiết kế và triển khai một nền tảng web mới cho phép người</p>
+<!------------------------ 
+  overview 
+  ------------------------->
+<div class="overflow-y-scroll space-y-6 h-[550px]">
+  {% for project in projects %}
+  <div class="border border-gray-300 rounded-md p-5">
+      <div class="flex justify-between">
+        <div><a href="{% url 'task' project.project_id %}"><span class="font-bold text-xl">{{ project.project_name }}</span></a></div>
+        <div>
+            {% if user.role == 'Manager' %}
+            <a href="{% url 'update_project' project.project_id %}" class="border border-gray-300 rounded-md bg bg-black p-2 text-white">Update</a>
+            {% endif %}
+        </div>
+      </div>
+      <br>
+      <p>{{ project.description }}</p>
+      <small>{{project.status_project}}</small>
   </div>
-  <div class="row-start-3 row-end-3 col-start-3 col-end-3 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[200px]">
-    <a href=""><span>Tối ưu hóa hiệu suất ứng dụng di động</span></a>
-  </div>
-  <div class="row-start-3 row-end-3 col-start-4 col-end-4 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[200px]">
-    <a href=""><span>Hệ thống quản lý khách hàng nội bộ</span></a>
-  </div>
-  <div class="row-start-3 row-end-3 col-start-5 col-end-5 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[200px]">
-    <a href=""><span>Triển khai cổng thanh toán quốc tế</span></a>
-  </div>
+  {% endfor %}
 </div>
-<div class="col-start-2 col-span-4 row-start-4 row-end-4 flex flex-row pl-20 pr-20 mt-[1px] justify-between ml-[-15px]">
-  <div class="row-start-4 row-end-4 col-start-2 col-end-2 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[210px]">
-    <a href=""><span class="font-bold">Nghiên cứu và phát triển AI Chatbot</span></a>
-    <p>Thiết kế và triển khai một nền tảng web mới cho phép người</p>
-  </div>
-  <div class="row-start-4 row-end-4 col-start-3 col-end-3 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[210px]">
-    <a href=""><span>Phân tích dữ liệu và báo cáo doanh thu</span></a>
-  </div>
-  <div class="row-start-4 row-end-4 col-start-4 col-end-4 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[210px]">
-    <a href=""><span>Cải tiến trải nghiệm người dùng trên Website</span></a>
-  </div>
-  <div class="row-start-4 row-end-4 col-start-5 col-end-5 border w-[300px] p-5 border-2 border-gray-200 rounded-xl h-[210px]">
-    <a href=""><span>Xây dựng module Blog và tin tức</span></a>
-  </div>
-</div>
+
 {% endblock %}    

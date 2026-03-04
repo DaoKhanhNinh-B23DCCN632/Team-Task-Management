@@ -5,12 +5,28 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class Users(AbstractUser): 
+    gender_dict = {
+        'Male': 'Male', 
+        'Female': 'Female'
+    }
+    role_dict = {
+        'Manager': 'Manager', 
+        'Staff': 'Staff'
+    }
+
     full_name = models.CharField(max_length=100, blank=True, null=True)
-    role = models.CharField(max_length=20, blank=True, null=True)
+    role = models.CharField(max_length=20, blank=True, null=True, choices=role_dict)
+    gender = models.CharField(max_length=50, blank=True, null=True, choices=gender_dict)
+    date_of_birth = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return self.username 
 
 class Project(models.Model): 
+    status_dict = {
+        'In processing': 'In processing', 
+        'Completed': 'Completed', 
+        'Upcoming': 'Upcoming'
+    }
     project_id = models.AutoField(primary_key=True)
     project_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True)
@@ -21,7 +37,7 @@ class Project(models.Model):
         on_delete=models.PROTECT, 
         related_name='projects'
     )
-
+    status_project = models.CharField(max_length=50, blank=True, null=True, choices=status_dict)
     def __str__(self):
         return self.project_name
 
