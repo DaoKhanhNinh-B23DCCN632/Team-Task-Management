@@ -89,7 +89,8 @@ def project(request):
 
 def task(request, pk):
     tasks = Project.objects.get(project_id = pk)
-    context = {'tasks': tasks} 
+    project = Project.objects.get(project_id = pk)
+    context = {'tasks': tasks, 'project': project} 
     return render(request, 'main/task.html', context=context)
 def update_per_info(request, pk):  
     user = Users.objects.get(id=pk)

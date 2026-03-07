@@ -46,7 +46,7 @@
   {% for project in projects %}
   <div class="border border-gray-300 rounded-md p-5">
       <div class="flex justify-between">
-        <div><a href="{% url 'task' %}"><span class="font-bold text-xl">{{ project.project_name }}</span></a></div>
+        <div><a href="{% url 'task' project.project_id %}"><span class="font-bold text-xl">{{ project.project_name }}</span></a></div>
         <div>
             {% if user.role == 'Manager' %}
             <a href="{% url 'update_project' project.project_id %}" class="border border-gray-300 rounded-md bg bg-black p-2 text-white">Update</a>

@@ -11,7 +11,7 @@ urlpatterns = [
     path('create_project/', views.create_project, name='create_project'), 
     path('create_task/ <str:pk>', views.create_task, name='create_task'), 
     path('project/', views.project, name='project'), 
-    path('task', views.task, name='task'), 
+    path('task/<str:pk>', views.task, name='task'), 
     path('member/', views.member, name='member'),
     path('update_per_info/<str:pk>/', views.update_per_info, name='update_per_info'),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='main/password_reset.html'), name='password_reset'), 
