@@ -40,7 +40,7 @@ update_per_info
         <label for="assign_to">Assign to:</label>
         {{form.assign_to}}
         <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-            <a href="{% url 'task' %}" class="border border-gray-200 rounded-md text-center p-1">Cancel</a>
+            <a href="{% url 'task' project.project_id %}" class="border border-gray-200 rounded-md text-center p-1">Cancel</a>
             <input type="submit" value="Save" class="border border-gray-200 rounded-md p-1 bg bg-black text-white">
         </div>
         {% if messages %}

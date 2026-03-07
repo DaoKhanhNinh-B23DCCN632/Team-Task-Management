@@ -10,21 +10,34 @@
   <div><h1 class="text-[30px] font-bold">Project</h1></div>
   <div class="border p-3 bg-black rounded-md">
     <div>
-      <a href="{% url 'create_project' %}"><span class="text-white">+ Create new project</span></a>
+      <a href="{% url 'create_project'%}"><span class="text-white">+ Create new project</span></a>
     </div>
   </div>
 </div>
+
 <div class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px]">
   <div class="relative">
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-auto">
       <img src="{% static 'icons/search.png' %}" alt="search icon" class="h-5 w-5" />
     </div>
+    <form method='GET' action="{% url 'project' %}">
     <input
+      name="q", 
       type="text"
       class="pl-10 pr-3 py-2 border border-gray-200 rounded-xl w-[400px]"
       placeholder="Search"
     />
+    </form>
   </div>
+  <div class="border border-gray-300 rounded-md ml-3 w-[100px] h-[30px] flex justify-between content-center p-1">
+    <div><a href="{% url 'project' %}">All </a></div>
+    <div>{{project_count}}</div>
+  </div>
+  {% for status in statuses %}
+  <div class="border border-gray-300 rounded-md ml-3 w-[100px] h-[30px] flex justify-between content-center p-1">
+    <div><a href="{% url 'project' %}?q={{status}}">{{status}}</a></div>
+  </div>
+  {% endfor %}
 </div>
 <!------------------------ 
   overview 
@@ -33,7 +46,7 @@
   {% for project in projects %}
   <div class="border border-gray-300 rounded-md p-5">
       <div class="flex justify-between">
-        <div><a href="{% url 'task' project.project_id %}"><span class="font-bold text-xl">{{ project.project_name }}</span></a></div>
+        <div><a href="{% url 'task' %}"><span class="font-bold text-xl">{{ project.project_name }}</span></a></div>
         <div>
             {% if user.role == 'Manager' %}
             <a href="{% url 'update_project' project.project_id %}" class="border border-gray-300 rounded-md bg bg-black p-2 text-white">Update</a>
@@ -43,6 +56,7 @@
       <br>
       <p>{{ project.description }}</p>
       <small>{{project.status_project}}</small>
+      <p>{{ project.start_date }} -- {{ project.end_date }}</p>
   </div>
   {% endfor %}
 </div>

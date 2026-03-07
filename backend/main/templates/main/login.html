@@ -8,7 +8,9 @@
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-        <h3 style="color: red;">{{ message }}</h3>
+          {% if 'login' in message.tags %}
+            <h3 style="color: red;">{{ message }}</h3>
+          {% endif %}
         {% endfor %}
     </ul>
     {% endif %}

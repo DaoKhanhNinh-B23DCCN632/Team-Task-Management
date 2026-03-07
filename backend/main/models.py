@@ -38,6 +38,7 @@ class Project(models.Model):
         related_name='projects'
     )
     status_project = models.CharField(max_length=50, blank=True, null=True, choices=status_dict)
+    
     def __str__(self):
         return self.project_name
 

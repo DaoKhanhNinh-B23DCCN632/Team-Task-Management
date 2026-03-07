@@ -10,7 +10,7 @@
   <div><h1 class="text-[30px] font-bold">Project</h1></div>
   <div class="flex flex-row gap-1">
     <div class="border p-3 bg-black rounded-md">
-      <div><a href="{% url 'create_task' %}"><span class="text-white">+ Create task</span></a></div>
+      <div><a href="{% url 'create_task' tasks.project_id %}"><span class="text-white">+ Create task</span></a></div>
     </div>
     <div class="flex flex-row border-2 border-gray-200 items-center w-32 justify-center rounded-md">
       <div><img src="{% static 'icons/comment.jpg' %}" alt="comment icon" class="w-5"></div>

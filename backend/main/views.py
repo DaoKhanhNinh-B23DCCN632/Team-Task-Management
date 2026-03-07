@@ -7,6 +7,7 @@ from .forms import ProjectForm, TaskForm, ProfileForm, AddMemberForm
 from .models import Users, Project
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.db.models import Q
 def login(request): 
     if request.method == 'POST': 
         username = request.POST['username'] 
@@ -18,7 +19,7 @@ def login(request):
             auth_login(request, user) 
             return redirect('dashboard') 
         else: 
-            messages.error(request, 'Username or Password incorrect!')
+            messages.error(request, 'Username or Password incorrect!', extra_tags='login')
     return render(request, 'main/login.html')
 
 @login_required
@@ -65,19 +66,25 @@ def create_project(request):
     context = {'form': form}
     return render(request, 'main/create_project.html', context=context) 
 
-def create_task(request):
+def create_task(request, pk):
+    project = Project.objects.get(project_id = pk)
     form = TaskForm()
     if request.method == 'POST': 
         form = TaskForm(request.POST) 
         if form.is_valid(): 
             form.save() 
             messages.success(request, "Task was created successfully!") 
-    context = {'form': form}
+    context = {'form': form, 'project':project}
     return render(request, 'main/create_task.html', context=context)
 def project(request): 
-    projects = Project.objects.all() 
-
-    context = {'projects': projects}
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+    projects = Project.objects.filter(
+        Q(status_project__icontains=q) | 
+        Q(project_name__icontains=q)
+    ) 
+    project_count = projects.count()
+    statuses = Project.objects.values_list('status_project', flat=True).distinct()
+    context = {'projects': projects, 'statuses': statuses, 'project_count': project_count}
     return render(request, 'main/project.html', context=context)
 
 def task(request, pk):
@@ -118,6 +125,9 @@ def delete_member(request, pk):
     context = {'user': user}
     return render(request, 'main/delete.html', context=context)
 
+# def delete_project(request, pk): 
+
+
 
 def add_member(request): 
     form = AddMemberForm() 
@@ -140,5 +150,5 @@ def update_project(request, pk):
             form.save() 
             messages.success(request, "Project is updated successfully!")
             return redirect('project')
-    context = {'form': form, 'user': user}
+    context = {'form': form, 'user': user, 'project': project}
     return render(request, 'main/update_project.html', context=context)

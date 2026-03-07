@@ -1,28 +1,30 @@
-{% extends 'side_bar.html' %}
+{% extends 'side_bar_member.html' %}
 {% load static %}
 {% block content %}
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-[1375px]">
+<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto">
     <div><h1 class="text-[20px] font-bold">Create new project</h1></div>
 </div>
 <!----------------------------- 
 update_per_info 
 ------------------------------>
-<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-[430px] p-5 border-2 border-gray-200 rounded-md">
+<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-180">
     <form action="" method="post"> 
         {% csrf_token %}
         <div class="pb-2 border-b border-b-gray-300 mb-5">
             <h2 class="font-bold text-[20px]">New Project Information</h2>
         </div>
+        <br>
         <label for="project_name">Project name:</label> <br>
         {{form.project_name}} 
         <br> <br>
-        <label for="description">Description</label>
+        <label for="description">Description:</label><br>
         {{form.description}}
-        <div class="mt-5 flex flex-row justify-between">
-            <div>
+        <br> <br>
+        <div class="flex flex-row">
+            <div class="mr-10">
                 <label for="start_date">Start Date</label> <br>
                 {{form.start_date}}
             </div>
@@ -31,9 +33,9 @@ update_per_info
                 {{form.end_date}}
             </div>
         </div>
-        <br>
-        <div class="flex justify-between">
-            <div>
+        <br> <br>
+        <div class="flex flex-row">
+            <div class="mr-10">
                 <label for="created_by">Created by</label>
                 {{form.created_by}}
             </div>
@@ -42,12 +44,12 @@ update_per_info
                 {{form.status_project}}
             </div>
         </div>
-        <br> 
+        <br> <br>
         <!-- {{form.as_p}}  -->
-        <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-            <div><input type="submit" value="Save" class="border border-gray-200 rounded-md bg-black text-white w-[40px]"></div>
-            <div class="border border-gray-200 rounded-md bg-black text-white w-[40px] h-[20px] text-center"><a href="{% url 'project' %}"><span class="text-[10px]">Cancel</span></a></div>
-        </div>
+        
+        <input type="submit" value="Save" class="border border-gray-200 rounded-md p-[9px] bg bg-black text-white">
+        <a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-[10px] bg bg-black text-white">Cancel</a>
+        
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
