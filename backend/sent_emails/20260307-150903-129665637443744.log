@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: ninhdk2005@gmail.com
+Date: Sat, 07 Mar 2026 15:09:03 +0000
+Message-ID: <177289614307.8638.11703273417438953252@ninhdb.fpt>
+
+
+You're receiving this email because you requested a password reset for your u=
+ser account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/password_reset_confirm/MQ/d52sr3-f4e000c60704a2c03910457d2bacad1a/
+
+In case you=E2=80=99ve forgotten, you are: ninhdao
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

@@ -29,20 +29,20 @@
     />
     </form>
   </div>
-  <div class="border border-gray-300 rounded-md ml-3 w-[100px] h-[30px] flex justify-between content-center p-1">
+  <div class="border border-gray-300 rounded-md ml-3 flex justify-between content-center p-1 bg-black text-white">
     <div><a href="{% url 'project' %}">All </a></div>
-    <div>{{project_count}}</div>
   </div>
   {% for status in statuses %}
-  <div class="border border-gray-300 rounded-md ml-3 w-[100px] h-[30px] flex justify-between content-center p-1">
+  <div class="border border-gray-300 rounded-md ml-3 flex justify-between content-center p-1 bg-black text-white">
     <div><a href="{% url 'project' %}?q={{status}}">{{status}}</a></div>
   </div>
   {% endfor %}
+  <div class="ml-3"><h3>{{project_count}} projects</h3></div>
 </div>
 <!------------------------ 
   overview 
   ------------------------->
-<div class="overflow-y-scroll space-y-6 h-[550px]">
+<div class="overflow-y-scroll space-y-6 h-[calc(100vh-200px)] p-6">
   {% for project in projects %}
   <div class="border border-gray-300 rounded-md p-5">
       <div class="flex justify-between">
@@ -50,6 +50,7 @@
         <div>
             {% if user.role == 'Manager' %}
             <a href="{% url 'update_project' project.project_id %}" class="border border-gray-300 rounded-md bg bg-black p-2 text-white">Update</a>
+            <a href="{% url 'delete_project' project.project_id %}" class="border border-gray-300 rounded-md bg bg-black p-2 text-white">Delete</a>
             {% endif %}
         </div>
       </div>

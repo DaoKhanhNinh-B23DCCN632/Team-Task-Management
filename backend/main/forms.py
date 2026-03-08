@@ -1,6 +1,6 @@
 #type: ignore
 from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput
-from .models import Project, Task, Users
+from .models import Project, Task, Users, Comment
 
 class ProjectForm(ModelForm): 
     class Meta:
@@ -31,7 +31,14 @@ class ProjectForm(ModelForm):
 class TaskForm(ModelForm): 
     class Meta: 
         model = Task 
-        fields = '__all__'
+        fields = [
+            'task_name', 
+            'description', 
+            'status', 
+            'deadline', 
+            'assign_to', 
+            'project_id'
+        ]
         widgets = {
             'task_name': TextInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-full'
@@ -111,4 +118,19 @@ class AddMemberForm(ModelForm):
             })
         }
 
+class AddCommentForm(ModelForm): 
+    class Meta: 
+        model = Comment 
+        fields = ['content', 'project_id', 'user_name'] 
+        widgets = {
+            'content': Textarea(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-full h-48'
+            }), 
+            'user_name': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-full'
+            }),
+            'project_id': Select(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-full'
+            })
+        }
 

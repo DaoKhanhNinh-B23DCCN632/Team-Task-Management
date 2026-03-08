@@ -20,5 +20,12 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password_reset_complete.html'), name='password_reset_complete'),
     path('delete_member/<str:pk>', views.delete_member, name='delete_member'), 
     path('add_member/', views.add_member, name='add_member'), 
-    path('update_project/<str:pk>', views.update_project, name='update_project')
+    path('update_project/<str:pk>', views.update_project, name='update_project'), 
+    path('update_task/<str:pk>', views.update_task, name='update_task'), 
+    path('delete_project/<str:pk>', views.delete_project, name='delete_project'), 
+    path('delete_task/<str:pk>', views.delete_task, name='delete_task'),
+    path('comment/<str:pk>', views.comment, name='comment'), 
+    path('add_comment/<str:pk>', views.add_comment, name='add_comment'), 
+    path('update_comment/<str:pk>', views.update_comment, name='update_comment'), 
+    path('delete_comment/<str:pk>', views.delete_comment, name='delete_comment')
 ]

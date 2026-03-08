@@ -43,15 +43,15 @@ class Project(models.Model):
         return self.project_name
 
 class Task(models.Model): 
-    status_dict = {
-        'In processing': 'In processing', 
-        'Completed': 'Completed', 
-        'Pending': 'Pending'
-    }
+    status_choices = [
+        ('In processing','In processing'), 
+        ('Completed', 'Completed'), 
+        ('Pending', 'Pending')
+    ]
     task_id = models.AutoField(primary_key=True) 
     task_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True) 
-    status = models.CharField(max_length=50, blank=True, null=True, choices=status_dict) 
+    status = models.CharField(max_length=50, blank=True, null=True, choices=status_choices) 
     deadline = models.DateTimeField(blank=True, null=True)
     project_id = models.ForeignKey(
         Project, 
@@ -93,7 +93,19 @@ class Notification(models.Model):
         on_delete=models.CASCADE, 
         related_name='notifications'
     )
-    
+
+class Comment(models.Model): 
+    comment_id = models.AutoField(primary_key=True) 
+    user_name = models.CharField(max_length=100, blank=True, null=True)
+    content = models.TextField(blank=True, null=True) 
+    project_id = models.ForeignKey(
+        Project, 
+        on_delete=models.CASCADE, 
+        related_name='comments'
+    )
+    created_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    def __str__(self):
+        return self.content
 
 
 

@@ -11,33 +11,33 @@
         <div class="flex flex-col bg-white border-r border-gray-200 pt-[20px] items-center row-span-2">
         <!-- dashboard side bar -->
             <div class="w-40 space-y-6">
-                <div class="flex items-center">
+                <div class="flex items-center border border-gray-300 rounded-xl bg-gray-100 p-2">
                     <img src="{% static 'icons/dashboard.png' %}" alt="dashboard icon" class="w-5 h-5 mr-2"> 
                     <a href="{% url 'dashboard' %}">Dashboard</a>
                 </div>
                 
                 <!-- projile -->
-                <div class="flex items-center">
+                <div class="flex items-center border border-gray-300 rounded-xl bg-gray-100 p-2">
                     <img src="{% static 'icons/profile.png' %}" alt="profile icon" class="w-5 h-5 mr-2">
                     <a href="{% url 'member' %}">Member</a>
                 </div>
                 
                 <!-- project -->
-                <div class="flex items-center">
+                <div class="flex items-center border border-gray-300 rounded-xl bg-gray-100 p-2">
                     <img src="{% static 'icons/project.png' %}" alt="project icon" class="w-5 h-5 mr-2">
                     <a href="{% url 'project' %}">Project</a>
                 </div>
                 
                 <!-- calendar -->
-                <div class="flex items-center">
+                <div class="flex items-center border border-gray-300 rounded-xl bg-gray-100 p-2">
                     <img src="{% static 'icons/logout.png' %}" alt="project icon" class="w-5 h-5 mr-2">
                     <a href="{% url 'login' %}">Log out</a>
                 </div>
             </div>
         </div>
         <div class="p-6">
-            {% block content %}
-            {% endblock %}
+             {% block content %}
+             {% endblock %}
         </div>
     </div>
 </body>

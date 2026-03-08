@@ -1,0 +1,43 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+{% block content %}
+<!----------------------- 
+header 
+------------------------->
+<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px]">
+    <div><h1 class="text-[20px] font-bold">Update task</h1></div>
+</div>
+<!----------------------------- 
+update_per_info 
+------------------------------>
+<br>
+<div>
+    <div class="pb-2 border-b border-b-gray-300 mb-5">
+        <h2 class="font-bold text-[20px]">Update Task Information</h2>
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.errors }}
+        <label for="">Project name:</label>
+        {{form.project_id}}
+        <label for="">Task name:</label>
+        {{ form.task_name }}
+        <br><br> 
+        <label for="">Description:</label>
+        {{ form.description }}
+        <br><br> 
+        <label for="">Status:</label>
+        {{ form.status }}
+        <br><br> 
+        <label for="">Deadline:</label>
+        {{ form.deadline }}
+        <br><br> 
+        <label for="">Assign to:</label>
+        {{ form.assign_to }}
+        <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
+            <a href="{% url 'task' project.project_id %}" class="border border-gray-200 rounded-md text-center p-1">Cancel</a>
+            <input type="submit" value="Save" class="border border-gray-200 rounded-md p-1 bg bg-black text-white">
+        </div>
+    </form>
+</div> 
+{% endblock %}

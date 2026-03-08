@@ -1,0 +1,23 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+{% block content %}
+<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px] mb-10">
+    <div><h1 class="text-[20px] font-bold">Messages</h1></div>
+    <div class="border border-gray-200 p-2  rounded-md bg-black text-white"><a href="">Add comments</a></div>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="">Name:</label> 
+    {{ form.user_name }}
+    <br>
+    <label for="">Project name:</label>
+    {{ form.project_id }}
+    <br>
+    <label for="">Contents:</label>
+    {{ form.content }}
+    <input type="submit" value="Send" class="border border-gray-200 p-2  rounded-md bg-black text-white mt-5">
+    <a href="{% url 'comment' project.project_id %}" class="ml-3 border border-gray-200 p-[10px] rounded-md text-black">Cancel</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px]">
+    <div><h1 class="text-[20px] font-bold">{{ task.task_name }}</h1></div>
+</div>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h3 style="color: red;">{{ message }}</h3>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <h3>Are you sure you want to delete?</h3>
+    <a href="{{request.META.HTTP_REFERER}}">Go back</a>
+    <input type="submit" value="Confirm">
+</form>
+
+{% endblock %}
