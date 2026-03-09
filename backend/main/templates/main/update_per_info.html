@@ -4,25 +4,25 @@
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto">
-    <div><h1 class="text-[20px] font-bold">Profile Setting</h1></div>
+<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto h-[80px]">
+    <div><h1 class="text-[40px] font-bold">Profile Setting</h1></div>
 </div>
 <!----------------------------- 
 update_per_info 
 ------------------------------>
 <div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-180">
-    {% if messages %}
+    <!-- {% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <h3 style="color: red;">{{message}}</h3>
         {% endfor %}
     </ul>
-    {% endif %}
+    {% endif %} -->
     <form action="" method="post">
         {% csrf_token %}
         <!-- {{ form }} -->  
         <div  class="shadow-xl rounded-md">
-            <div class="pb-2 border-b border-b-gray-300 mb-5">
+            <div class="pb-2 border-b border-b-gray-300 mb-5 p-5">
                 <h2 class="font-bold text-[20px]">Personal Information</h2>
                 <h3 class="text-[10px]">Update your personal information and account preferences</h3>
             </div>
@@ -51,7 +51,7 @@ update_per_info
         <br> <br>
 
         <div  class="mt-8 shadow-md pb-5 rounded-md">
-            <div class="mb-5 border-b border-b-gray-300 pb-2">
+            <div class="mb-5 border-b border-b-gray-300 p-5">
                 <h2 class="font-bold text-[20px]">Contact Information</h2>
                 <h3 class="text-[10px]">Update your email address and username</h3>
             </div>
@@ -67,8 +67,8 @@ update_per_info
             </div>
         </div>
         <br><br>
-        <input type="submit" value="Update" class="border border-gray-200 rounded-md p-[9px]"> 
-        <a href="{% url 'change_password' user.id %}" class="border border-gray-200 rounded-md p-[10px]">Change password</a>
+        <input type="submit" value="Update" class="border border-gray-200 rounded-md p-[9px] bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105"> 
+        <a href="{% url 'change_password' user.id %}" class="border border-gray-200 rounded-md p-[11px] bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-900">Change password</a>
     </form>
 
 </div>

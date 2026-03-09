@@ -22,11 +22,11 @@ class Users(AbstractUser):
         return self.username 
 
 class Project(models.Model): 
-    status_dict = {
-        'In processing': 'In processing', 
-        'Completed': 'Completed', 
-        'Upcoming': 'Upcoming'
-    }
+    status_dict = [
+        ('In processing', 'In processing'), 
+        ('Completed', 'Completed'), 
+        ('Upcoming', 'Upcoming')
+    ]
     project_id = models.AutoField(primary_key=True)
     project_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True)

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px] mb-10">
-    <div><h1 class="text-[20px] font-bold">Messages</h1></div>
+    <div><h1 class="text-[40px] font-bold">Messages</h1></div>
     <div class="border border-gray-200 p-2  rounded-md bg-black text-white"><a href="">Add comments</a></div>
 </div>
 
@@ -16,8 +16,8 @@
     <br>
     <label for="">Contents:</label>
     {{ form.content }}
-    <input type="submit" value="Update" class="border border-gray-200 p-2  rounded-md bg-black text-white mt-5">
-    <a href="{% url 'comment' project.project_id %}" class="ml-3 border border-gray-200 p-[10px] rounded-md text-black">Cancel</a>
+    <input type="submit" value="Update" class="border border-gray-200 p-2  rounded-md bg-black text-white mt-5 transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">
+    <a href="{% url 'comment' project.project_id %}" class="ml-1 border border-gray-200 p-[11px] bg bg-gray-100 rounded-md text-black transition delay-150 duration-300 ease-in-out hover:bg-gray-200">Cancel</a>
 </form>
 
 {% endblock %}

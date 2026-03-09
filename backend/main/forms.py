@@ -8,23 +8,24 @@ class ProjectForm(ModelForm):
         fields = '__all__'  
         widgets = {
             'project_name': TextInput(attrs={
-                'class': 'border-2 border-gray-200 rounded-md w-[400px]'
+                'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-20px)]',
+                'placeholder': 'Enter project name ...'
             }), 
             'description': Textarea(attrs={
                 'placeholder': 'Describe project in detail...', 
-                'class': 'border-2 border-gray-200  w-[400px] h-48 rounded-md'
+                'class': 'border-2 border-gray-200  w-[calc(100%-20px)] h-48 rounded-md'
             }), 
             'start_date': DateTimeInput(attrs={
-                "class": "border-2 border-gray-200 rounded-md w-60"
+                "class": "border-2 border-gray-200 rounded-md w-[calc(100%-20px)]"
             }),
             'end_date': DateTimeInput(attrs={
-                "class": "border-2 border-gray-200 rounded-md w-60"
+                "class": "border-2 border-gray-200 rounded-md w-[calc(100%-20px)]"
             }),
             'created_by': Select(attrs={
-                'class': 'border-2 border-gray-200 rounded-md'
+                'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-20px)]'
             }), 
             'status_project': Select(attrs={
-                'class': 'border-2 border-gray-200 rounded-md'
+                'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-20px)]'
             })
         }
 
@@ -47,10 +48,10 @@ class TaskForm(ModelForm):
                 'class': 'border-2 border-gray-200  w-full h-48 rounded-md'
             }), 
             'status': Select(attrs={
-                'class': 'border-2 border-gray-200 rounded-md'
+                'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-1000px)]'
             }), 
             'deadline': DateTimeInput(attrs={
-                'class': 'border-2 border-gray-200 rounded-md'
+                'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-1000px)]'
             })
         }
 

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px]">
-    <div><h1 class="text-[20px] font-bold">Messages</h1></div>
+    <div><h1 class="text-[40px] font-bold">Messages</h1></div>
     <div class="border border-gray-200 p-2  rounded-md bg-black text-white"><a href="{% url 'add_comment' project.project_id %}">Add comments</a></div>
 </div>
 
@@ -10,11 +10,9 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    <h3>Are you sure you want to delete?</h3>
+    <h3 class="font-bold">Are you sure you want to delete?</h3>
     <a href="{{request.META.HTTP_REFERER}}" class="border border-gray-300 bg-black text-white p-1 rounded-xl">Go back</a>
     <input type="submit" value="Confirm" class="border border-gray-300 bg-black text-white p-[2px] rounded-xl">
 </form>
-
 </div>
-
 {% endblock %}

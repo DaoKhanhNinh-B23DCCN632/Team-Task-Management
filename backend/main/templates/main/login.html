@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="min-h-screen flex items-center justify-center">
-  <div class="flex flex-col w-96 justify-self-center p-[10px] shadow-xl"> 
+  <div class="flex flex-col w-full max-w-md justify-self-center p-[10px] shadow-xl bg bg-gray-200 h-auto rounded-lg"> 
     <h1 class="text-[30px] font-bold">Sign In</h1>
     <br>
     {% if messages %}
@@ -19,19 +19,19 @@
       {% csrf_token %}
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pointer-events-none flex items-center ml-1"><img src="{% static 'icons/user.png' %}" alt="user" class="w-4"></div>
-        <div><input type="text" name="username" placeholder="Username" class="w-[269px] pl-6 border-2 border-gray-200 rounded-md"/></div>
+        <div><input type="text" name="username" placeholder="Username" class="w-full pl-6 border-2 border-gray-200 rounded-md"/></div>
       </div>
       <br>
       <!-- -------------------------------------------- -->
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pointer-events-none flex items-center ml-1"><img  src="{% static 'icons/password.png' %}" alt="" class="w-4"></div>
-        <div><input type="password" name="password" placeholder="Password" class="w-[269px] pl-6 border-2 border-gray-200 rounded-md"/></div>
+        <div><input type="password" name="password" placeholder="Password" class="w-full pl-6 border-2 border-gray-200 rounded-md"/></div>
       </div> 
       <!-- <button type="submit" class="border-2 border-solid bg-black rounded-md hover:bg-black-700 text-center"><span style="color: white;">Sign In</span></button> -->
       <a href="{% url 'password_reset' %}" class="text-right text-sm underline text-blue-400">Forgot password ?</a>
       <br>
       <!-- <a href="{% url 'dashboard' %}" class="border-2 border-solid bg-black rounded-md hover:bg-black-700 text-center"><span style="color: white;">Sign In</span></a> -->
-      <button type="submit" class="border-2 border-solid bg-black rounded-md hover:bg-black-700 text-center w-[269px] mt-[10px]"><span style="color: white;">Sign In</span></button>
+      <button type="submit" class="border-2 border-solid bg-black rounded-2xl hover:bg-black-700 text-center w-full mt-[10px] transition delay-150 duration-300 ease-in-out hover:scale-105"><span style="color: white;">Sign In</span></button>
     </form>
   </div>
 </div>

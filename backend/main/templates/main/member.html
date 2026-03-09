@@ -4,25 +4,28 @@
 {% block content %}
 
 <div class="bg-white-200 items-center border-b border-b-gray-200 flex px-6 h-[80px] flex justify-between">
-    <div><h1 class="text-[20px] font-bold">Member of Team</h1></div>
-    <div><a href="{% url 'add_member' %}" class="border border-gray-200 bg bg-black text-white p-2 rounded-md">Add member</a></div>
+    <div><h1 class="text-[40px] font-bold">Member of Team</h1></div>
+    {% if request.user.role == 'Manager' %}
+    <div><a href="{% url 'add_member' %}" class="border border-gray-200 bg bg-black text-white p-2 rounded-md transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">Add member</a></div>
+    {% endif %}
 </div>
 
-{% if messages %}
+<!-- {% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <h3 style="color: red;">{{ message }}</h3>
         {% endfor %}
     </ul>
-{% endif %}
+{% endif %} -->
 
-<div class="col-start-2 row-start-2 overflow-y-auto p-6">
+<div class="col-start-2 row-start-2 overflow-y-scroll p-6 h-[calc(100vh-200px)]">
     {% for user in users %}
 
-        <div class="flex justify-between border border-gray-200 w-auto m-[20px] rounded-md p-10">
+        <div class="flex justify-between border border-gray-200 w-auto m-[20px] rounded-xl p-10 bg bg-gray-200 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-100">
             <div>
                 <h3>{{ user.full_name }}</h3>
                 <small>{{ user.role }}</small>
+                <h3>Contact: {{ user.email }}</h3>
             </div>
             <div>
                 {% if request.user.role == 'Manager' or request.user.id == user.id %}
@@ -32,7 +35,6 @@
                     <a href="{% url 'delete_member' user.id %}" class="border border-gray-200 rounded-md bg bg-black text-white p-1">Delete</a>
                 {% endif %}
             </div> 
-
         </div>
 
     {% endfor %}

@@ -4,8 +4,8 @@
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white items-center border-b border-b-gray-200 flex flex-row p-10 justify-between">
-    <div><h1 class="text-[20px] font-bold">Update project</h1></div>
+<div class="bg-white items-center border-b border-b-gray-200 flex flex-row p-10 justify-between h-[80px]">
+    <div><h1 class="text-[40px] font-bold">Update project</h1></div>
 </div>
 
 <br><br>
@@ -46,16 +46,16 @@ update_per_info
     <br> 
     <!-- {{form.as_p}}  -->
     <div class="flex flex-row">
-        <div><input type="submit" value="Save" class="border border-gray-200 rounded-md bg-black text-white w-[40px]"></div>
-        <div class="border border-gray-200 rounded-md bg-black text-white w-[40px] h-[20px] text-center"><a href="{% url 'project' %}"><span class="text-[10px]">Cancel</span></a></div>
+        <div><input type="submit" value="Save" class="border border-gray-200 rounded-md bg-black text-white w-auto p-2"></div>
+        <div class="border border-gray-200 rounded-md bg-black w-auto text-white p-2"><a href="{% url 'project' %}"><span>Cancel</span></a></div>
     </div>
-    {% if messages %}
+    <!-- {% if messages %}
         <ul class="messages">
             {% for message in messages %}
                 <h3 style="color: red;">{{message}}</h3>
             {% endfor %}
         </ul>
-    {% endif %}
+    {% endif %} -->
 </form>
 {% endblock %}
     

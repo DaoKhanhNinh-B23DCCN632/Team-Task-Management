@@ -6,7 +6,7 @@
 header 
 ------------------------->
 <div class="items-center border-b border-gray-300 flex flex-row p-10 justify-between w-full max-w-full h-[80px]">
-    <div><h1 class="text-[30px] font-bold text-5xl">Dashboard</h1></div>
+    <div><h1 class="text-[40px] font-bold text-5xl">Dashboard</h1></div>
     <div class="flex flex-row">
         <!-- <div class="mr-2"><img src="{% static 'icons/notify.png' %}" alt="notify icon" class="w-8"></div>
         <div class="mr-10"><img src="{% static 'icons/new-email.png' %}" alt="new email icon" class="w-8"></div> -->
@@ -35,8 +35,10 @@ overview
     <!-- --------------------------------------------------------- -->
     <div>
         <div class="text-center mb-2"><h2><span class="font-bold">{{ date }}</span></h2></div>
+        {% if request.user.role == 'Manager' %}
         <div class="border-white mb-2 rounded-xl text-center shadow-md"><a href="{% url 'create_project' %}"><span class="font-bold">Add Project</span></a></div>
-    </div>
+        {% endif %}                                                                         
+    </div>                        
 </div>
 <!-------------------------
     main content 
@@ -48,7 +50,7 @@ overview
     <div><h2 class="font-bold text-[20px]">In progress</h2></div>
     <div class="overflow-x-auto flex flex-row space-x-5 border-gray-300 rounded-xl p-5">
         {% for project in in_processing_projects %}
-        <div class="w-1/4 flex-shrink-0 border border-gray-200 rounded-xl p-2 text-center">
+        <div class="w-1/4 flex-shrink-0 border border-gray-200 rounded-xl p-2 text-center bg bg-gray-100 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">
             <h3 class="text-center">{{project.start_date}} - {{project.end_date}}</h3> <br>
             <a href="{% url 'task' project.project_id %}"><span class="font-bold text-[20px] text-center">{{ project.project_name }}</span></a> <br>
         </div>
@@ -62,7 +64,7 @@ overview
     <div><h2 class="font-bold text-[20px]">Upcoming</h2></div>
     <div class="overflow-x-auto flex flex-row space-x-5 border-gray-300 rounded-xl p-5">
         {% for project in upcoming_projects %}
-        <div class="w-1/4 flex-shrink-0 border border-gray-200 rounded-xl p-2 text-center">
+        <div class="w-1/4 flex-shrink-0 border border-gray-200 rounded-xl p-2 text-center bg bg-gray-100 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">
             <h3 class="text-center">{{ project.start_date }} - {{ project.end_date }}</h3> <br>
             <a href="{% url 'task' project.project_id %}"><span class="font-bold text-[20px] text-center">{{ project.project_name }}</span></a> <br>
         </div>

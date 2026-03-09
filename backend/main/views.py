@@ -105,7 +105,7 @@ def project(request):
         Q(project_name__icontains=q)
     ) 
     project_count = projects.count()
-    statuses = Project.objects.values_list('status_project', flat=True).distinct()
+    statuses = [s[0] for s in Project.status_dict]
     context = {'projects': projects, 'statuses': statuses, 'project_count': project_count}
     return render(request, 'main/project.html', context=context)
 
@@ -113,7 +113,7 @@ def task(request, pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
     tasks = Task.objects.filter(
         (Q(status__icontains=q) | 
-        Q(task_name__icontains=q))&
+        Q(task_name__icontains=q) | Q(assign_to__username__icontains=q))&
         Q(project_id = pk)
     )
     status_count = tasks.count()

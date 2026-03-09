@@ -4,13 +4,13 @@
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto">
-    <div><h1 class="text-[20px] font-bold">Create new project</h1></div>
+<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto h-[80px]">
+    <div><h1 class="text-[40px] font-bold">Create new project</h1></div>
 </div>
 <!----------------------------- 
 update_per_info 
 ------------------------------>
-<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-180">
+<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-full">
     <form action="" method="post"> 
         {% csrf_token %}
         <div class="pb-2 border-b border-b-gray-300 mb-5">
@@ -47,16 +47,16 @@ update_per_info
         <br> <br>
         <!-- {{form.as_p}}  -->
         
-        <input type="submit" value="Save" class="border border-gray-200 rounded-md p-[9px] bg bg-black text-white">
-        <a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-[10px] bg bg-black text-white">Cancel</a>
+        <input type="submit" value="Save" class="border border-gray-200 rounded-md p-[9px] bg bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">
+        <a href="{% url 'project' %}" class="border border-gray-200 rounded-md p-[11px] bg bg-gray-200 text-black transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-105">Cancel</a>
         
-        {% if messages %}
+        <!-- {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
                     <h3 style="color: red;">{{message}}</h3>
                 {% endfor %}
             </ul>
-        {% endif %}
+        {% endif %} -->
     </form>
 </div>
 {% endblock %}

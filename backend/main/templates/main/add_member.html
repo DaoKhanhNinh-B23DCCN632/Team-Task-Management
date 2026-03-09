@@ -4,9 +4,9 @@
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto">
-    <div><h1 class="text-[20px] font-bold">Member of Team</h1></div>
-    <div><a href="{% url 'add_member' %}" class="border border-gray-200 bg bg-black text-white p-2 rounded-md">Add member</a></div>
+<div class="bg-white-200 col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-auto h-[80px]">
+    <div><h1 class="text-[40px] font-bold">Member of Team</h1></div>
+    <div><a href="{% url 'add_member' %}" class="border border-gray-200 bg bg-black text-white p-2 rounded-md transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">Add member</a></div>
 </div>
 <!----------------------------- 
 update_per_info 
@@ -16,7 +16,7 @@ update_per_info
         {% csrf_token %}
         <!-- {{ form }} -->  
         <div  class="shadow-xl rounded-md">
-            <div class="pb-2 border-b border-b-gray-300 mb-5">
+            <div class="pb-2 border-b border-b-gray-300 mb-5 p-5">
                 <h2 class="font-bold text-[20px]">Personal Information</h2>
                 <h3 class="text-[10px]">Entering your personal information and account preferences</h3>
             </div>
@@ -45,7 +45,7 @@ update_per_info
         <br> <br>
 
         <div  class="mt-8 shadow-md pb-5 rounded-md">
-            <div class="mb-5 border-b border-b-gray-300 pb-2">
+            <div class="mb-5 border-b border-b-gray-300 p-5">
                 <h2 class="font-bold text-[20px]">Contact Information</h2>
                 <h3 class="text-[10px]">Update your email address and username</h3>
             </div>
@@ -61,8 +61,8 @@ update_per_info
             </div>
         </div>
         <br><br>
-        <input type="submit" value="Add" class="border border-gray-200 rounded-md p-[9px]"> 
-        <a href="{% url 'member' %}" class="border border-gray-200 rounded-md p-[10px]">Cancel</a>
+        <input type="submit" value="Add" class="border border-gray-200 rounded-md p-[9px] bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105"> 
+        <a href="{% url 'member' %}" class="border border-gray-200 rounded-md p-[11px] bg-gray-200 text-black transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-105">Cancel</a>
     </form>
 </div>
 {% endblock %}

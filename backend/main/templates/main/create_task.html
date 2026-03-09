@@ -1,56 +1,56 @@
-{% extends 'side_bar.html' %}
+{% extends 'side_bar_member.html' %}
 {% load static %}
 {% block content %}
 <!----------------------- 
 header 
 ------------------------->
-<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-[1375px]">
-    <div><h1 class="text-[20px] font-bold">Create new task</h1></div>
-</div>
+<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px]">
+    <div><h1 class="text-[40px] font-bold">Create new task</h1></div>
+</div> 
+<br>
 <!----------------------------- 
 update_per_info 
 ------------------------------>
-<div class="col-start-3 col-span-2 row-span-3 row-start-2 mt-10 mb-40 w-[432px] p-5 border-2 border-gray-200 rounded-md">
-    <div class="pb-2 border-b border-b-gray-300 mb-5">
-        <h2 class="font-bold text-[20px]">New Task Information</h2>
+<div class="border-b border-b-gray-300">
+    <h2 class="font-bold text-[20px]">New Task Information</h2>
+</div>
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="project_name">Project name:</label>
+    {{form.project_id}}
+    <br><br>
+    <label for="task_name">Task name:</label>
+    {{ form.task_name }}
+    <br><br>
+    <label for="description">Description:</label>
+    {{ form.description }}
+    <br><br>
+    <div class="flex flex-col">
+        <div>
+            <label for="status">Status:</label> <br>
+            {{ form.status }}
+        </div>
+        <div>
+            <label for="deadline">Dealine:</label><br>
+            {{ form.deadline }} 
+        </div>
     </div>
+    <br>
+    <label for="assign_to">Assign to:</label>
+    {{form.assign_to}}
+    <div class="flex flex-row mt-10 justify-start gap-2 pr-5">
+        <a href="{% url 'task' project.project_id %}" class="border border-gray-200 rounded-md text-center p-1 transition delay-150 duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">Cancel</a>
+        <input type="submit" value="Save" class="border border-gray-200 rounded-md p-1 bg bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h3 style="color: red;">{{ message }}</h3>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- {{form}} -->
+</form>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="project_name">Project name:</label>
-        {{form.project_id}}
-        <br><br>
-        <label for="task_name">Task name:</label>
-        {{ form.task_name }}
-        <br><br>
-        <label for="description">Description:</label>
-        {{ form.description }}
-        <br><br>
-        <div class="flex flex-row justify-between">
-            <div>
-                <label for="status">Status:</label>
-                {{ form.status }}
-            </div>
-            <div>
-                <label for="deadline">Dealine:</label>
-                {{ form.deadline }} 
-            </div>
-        </div>
-        <br>
-        <label for="assign_to">Assign to:</label>
-        {{form.assign_to}}
-        <div class="flex flex-row mt-10 justify-end gap-2 pr-5">
-            <a href="{% url 'task' project.project_id %}" class="border border-gray-200 rounded-md text-center p-1">Cancel</a>
-            <input type="submit" value="Save" class="border border-gray-200 rounded-md p-1 bg bg-black text-white">
-        </div>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <h3 style="color: red;">{{ message }}</h3>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <!-- {{form}} -->
-    </form>
-</div> 
 {% endblock %}
