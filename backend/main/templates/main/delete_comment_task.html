@@ -1,8 +1,13 @@
 {% extends 'side_bar_member.html' %}
 {% load static %}
 {% block content %}
-<div class="bg-white col-span-4 items-center border-b border-b-gray-200 flex flex-row p-10 justify-between w-full h-[80px]">
-    <div><h1 class="text-[40px] font-bold">Messages</h1></div>
+<div
+  class="bg-white items-center flex p-10 justify-between border-b border-gray-200 h-[80px]"
+>
+  <div><h1 class="text-[40px] font-bold">{{ task.task_name }}</h1></div>
+  <div class="flex flex-row gap-1">
+      <div><a href="{% url 'task' project.project_id %}" class="border border-gray-200 bg-black rounded-md p-2 text-white transition duration delay-300 hover:bg-black hover:scale-105">Cancel</a></div>
+  </div>
 </div>
 
 <div class="border border-gray-300 w-full h-[calc(100vh-200px)] mr-5 mt-10 rounded-2xl p-5 overflow-y-scroll">

@@ -65,10 +65,16 @@
           </thead>
           <tbody>
             {% for task in tasks %}
-                <tr class="border border-gray-100 bg-gray-200 rounded-2xl shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-100">
-                    <td><span>{{task.task_name}}</span></a></td>
+                <tr class="border border-gray-100 bg-gray-200 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-100">
+                    <td><a href="{% url 'task_information' task.task_id %}">{{task.task_name}}</a></td>
                     <td class="text-center">{{ task.assign_to }}</td>
-                    <td class="text-center">{{ task.status }}</td>
+                    {% if task.status == 'Completed' %}
+                    <td class="text-center text-green-500">{{ task.status }}</td>
+                    {% elif task.status == 'In processing' %}
+                    <td class="text-center text-blue-500">{{ task.status }}</td>
+                    {% else %}
+                    <td class="text-center text-red-500">{{ task.status }}</td>
+                     {% endif %}
                     <td class="text-center">{{ task.deadline }}</td>
                     <td>
                         <div class="flex justify-end gap-2">

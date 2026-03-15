@@ -25,7 +25,9 @@ urlpatterns = [
     path('delete_project/<str:pk>', views.delete_project, name='delete_project'), 
     path('delete_task/<str:pk>', views.delete_task, name='delete_task'),
     path('comment/<str:pk>', views.comment, name='comment'), 
-    path('add_comment/<str:pk>', views.add_comment, name='add_comment'), 
     path('update_comment/<str:pk>', views.update_comment, name='update_comment'), 
-    path('delete_comment/<str:pk>', views.delete_comment, name='delete_comment')
+    path('delete_comment/<str:pk>', views.delete_comment, name='delete_comment'), 
+    path('task_information/<str:pk>', views.task_information, name='task_information'), 
+    path('delete_comment_task/<str:pk>', views.delete_comment_task, name='delete_comment_task'), 
+    path('update_comment_task/<str:pk>', views.update_comment_task, name='update_comment_task')
 ]

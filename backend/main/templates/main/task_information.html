@@ -1,0 +1,89 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+{% block content %}
+<!----------------------- 
+  header 
+  ------------------------->
+<div
+  class="bg-white items-center flex p-10 justify-between border-b border-gray-200 h-[80px]"
+>
+  <div><h1 class="text-[40px] font-bold">{{ task.task_name }}</h1></div>
+  <div class="flex flex-row gap-1">
+      <div><a href="{% url 'task' project.project_id %}" class="border border-gray-200 bg-black rounded-md p-2 text-white transition duration delay-300 hover:bg-black hover:scale-105">Cancel</a></div>
+  </div>
+</div>
+<!-------------------------
+    main content 
+    ------------------------->
+<div class="rounded-2xl w-full h-[calc(100vh-200px)] flex flex-row">
+    <div class="border border-gray-200 p-10 m-5 rounded-2xl w-1/3 h-[calc(100vh-250px)] shadow-md">
+        <div class="border-b border-b-gray-200">
+            <h3 class="font-bold text-[20px]">Task Information</h3>
+        </div>
+        <br>
+        <div class="flex flex-col gap-5">
+            <div>
+                <div><h3 class="font-bold">Project Name</h3></div>
+                <div><p>{{ project.project_name }}</p></div>
+            </div>
+            <div>
+                <div><h3 class="font-bold">Task Name</h3></div>
+                <div><p>{{ task.task_name }}</p></div>
+            </div>
+            <div>
+                <div><h3 class="font-bold">Description</h3></div>
+                <div><p>{{ task.description }}</p></div>
+            </div>
+            <div>
+                <div><h3 class="font-bold">Status</h3></div>
+                <div>
+                    {% if task.status == 'Completed' %}
+                    <span class="border border-gray-100 bg bg-green-100 p-1 rounded-2xl">{{ task.status }}</span>
+                    {% elif task.status == 'In Progress' %}
+                    <span class="border border-gray-100 bg bg-yellow-100 p-1 rounded-2xl">{{ task.status }}</span>
+                    {% else %}
+                    <span class="border border-gray-100 bg bg-red-100 p-1 rounded-2xl">{{ task.status }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+                <div><h3 class="font-bold">Deadline</h3></div>
+                <div><p>{{ task.deadline }}</p></div>
+            </div>
+            <div>
+                <div><h3 class="font-bold">Assign to</h3></div>
+                <div class="border rounded-xl shadow-md p-1 w-1/2 bg-gray-100"><p>{{ task.assign_to.full_name }} <br> {{ task.assign_to }}</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="m-5 rounded-2xl w-2/3 h-[calc(100vh-250px)] ">
+        <div class="border border-gray-300 w-full h-[calc(100vh-320px)] rounded-2xl p-5 overflow-y-auto">
+            {% for comment in comments %}
+            <div class="border border-gray-200 p-5 m-5 rounded-2xl w-[calc(100%-40px)] bg-gray-100 flex justify-between transition delay-150 duration-300 ease-in-out hover:bg-gray-200 hover:scale-100">
+                <div>
+                    <h3>{{ comment.user_id.full_name }} -- {{comment.created_at}}</h3>
+                    <p>{{ comment.content }}</p>
+                </div>
+                <div>
+                    {% if comment.user_id == request.user or request.user.role == 'Manager' %}
+                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'update_comment' comment.comment_id %}">Update</a></div>
+                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'delete_comment_task' comment.comment_id %}">Delete</a></div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="border border-gray-300 w-full mr-5 rounded-2xl p-4">
+            <form action="" method="post" class="flex justify-between">
+                {% csrf_token %}
+                <div class="flex flex-row w-full">
+                    <div class="w-full">{{ form.content }}</div>
+                </div>
+                <div>
+                    <input type="submit" value="Send" class="border border-gray-200 rounded-md bg-black text-white transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105 ml-1 mr-1 p-1">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

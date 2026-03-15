@@ -13,13 +13,14 @@ class Users(AbstractUser):
         'Manager': 'Manager', 
         'Staff': 'Staff'
     }
-
+    
     full_name = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=20, blank=True, null=True, choices=role_dict)
     gender = models.CharField(max_length=50, blank=True, null=True, choices=gender_dict)
     date_of_birth = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return self.username 
+
 
 class Project(models.Model): 
     status_dict = [
@@ -103,9 +104,35 @@ class Comment(models.Model):
         on_delete=models.CASCADE, 
         related_name='comments'
     )
+    user_id = models.ForeignKey(
+        Users, 
+        on_delete=models.CASCADE, 
+        related_name='comments'
+    )
     created_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     def __str__(self):
-        return self.content
+        return self.content or "No content"
+class CommentTask(models.Model): 
+    comment_id = models.AutoField(primary_key=True) 
+    content = models.TextField(blank=True, null=True) 
+    project_id = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name='comments_task'
+    )
+    task_id = models.ForeignKey(
+        Task, 
+        on_delete=models.CASCADE, 
+        related_name='comments_task'
+    )
+    user_id = models.ForeignKey(
+        Users, 
+        on_delete=models.CASCADE, 
+        related_name='comments_task'
+    )
+    created_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    def __str__(self):
+        return self.content or "No content"
 
 
 

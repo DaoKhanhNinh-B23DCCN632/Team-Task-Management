@@ -1,0 +1,21 @@
+{% extends 'side_bar_member.html' %}
+{% load static %}
+{% block content %}
+<div
+  class="bg-white items-center flex p-10 justify-between border-b border-gray-200 h-[80px]"
+>
+  <div><h1 class="text-[40px] font-bold">{{ task.task_name }}</h1></div>
+  <div class="flex flex-row gap-1">
+      <div><a href="{% url 'task' project.project_id %}" class="border border-gray-200 bg-black rounded-md p-2 text-white transition duration delay-300 hover:bg-black hover:scale-105">Cancel</a></div>
+  </div>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="">Contents:</label>
+    {{ form.content }}
+    <input type="submit" value="Update" class="border border-gray-200 p-2  rounded-md bg-black text-white mt-5 transition delay-150 duration-300 ease-in-out hover:bg-black-700 hover:scale-105">
+    <a href="{% url 'task_information' task.task_id %}" class="ml-1 border border-gray-200 p-[11px] bg bg-gray-100 rounded-md text-black transition delay-150 duration-300 ease-in-out hover:bg-gray-200">Cancel</a>
+</form>
+
+{% endblock %}
