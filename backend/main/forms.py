@@ -1,5 +1,5 @@
 #type: ignore
-from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput
+from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput, PasswordInput
 from .models import Project, Task, Users, Comment, CommentTask
 
 class ProjectForm(ModelForm): 
@@ -82,7 +82,7 @@ class ProfileForm(ModelForm):
             'email': EmailInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
-            'username': TextInput(attrs={
+            'username': PasswordInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             })
         }
@@ -96,7 +96,8 @@ class AddMemberForm(ModelForm):
             'date_of_birth', 
             'role', 
             'email', 
-            'username'
+            'username',  
+            'password' 
         ] 
         widgets = {
             'full_name': TextInput(attrs={
@@ -115,6 +116,9 @@ class AddMemberForm(ModelForm):
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
             'username': TextInput(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-80'
+            }), 
+            'password': TextInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             })
         }

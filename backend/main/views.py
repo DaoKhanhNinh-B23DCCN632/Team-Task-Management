@@ -1,5 +1,5 @@
 #type:ignore
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
@@ -28,19 +28,22 @@ def login(request):
 def dashboard(request): 
     user = Users.objects.all()
     projects = Project.objects.all()
+    total_in_processing_projects = projects.filter(status_project='In processing').count()
     in_processing_projects = projects.filter(status_project='In processing').order_by('-start_date')[:4]
-    in_processing_projects_count = in_processing_projects.count()
+    # in_processing_projects_count = in_processing_projects.count()
+    total_completed_projects = projects.filter(status_project='Completed').count()
     completed_projects = projects.filter(status_project='Completed').order_by('-end_date')[:4] 
-    completed_projects_count = completed_projects.count()
+    # completed_projects_count = completed_projects.count()
+    total_upcoming_projects = projects.filter(status_project='Upcoming').count()
     upcoming_projects = projects.filter(status_project='Upcoming').order_by('start_date')[:4]
-    upcoming_projects_count = upcoming_projects.count()
+    # upcoming_projects_count = upcoming_projects.count()
     total_projects = projects.count()
     date = timezone.now()
     context = {
         'users': user, 
-        'in_processing_projects_count': in_processing_projects_count,
-        'completed_projects_count': completed_projects_count,
-        'upcoming_projects_count': upcoming_projects_count, 
+        'in_processing_projects_count': total_in_processing_projects,
+        'completed_projects_count': total_completed_projects,
+        'upcoming_projects_count': total_upcoming_projects,
         'total_projects': total_projects, 
         'date': date, 
         'in_processing_projects': in_processing_projects,
@@ -223,7 +226,9 @@ def add_member(request):
     if request.method == 'POST': 
         form = AddMemberForm(request.POST) 
         if form.is_valid(): 
-            form.save() 
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save() 
             messages.success(request, 'User is added successfully!') 
             return redirect('member') 
     context = {'form': form} 
