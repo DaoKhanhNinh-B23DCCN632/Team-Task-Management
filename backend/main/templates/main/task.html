@@ -48,7 +48,7 @@
     </div>
   </div>
   {% endfor %}
-  <div><h3>{{status_count}} tasks</h3></div>
+  <div class="border rounded-full p-1 bg-green-100"><h3><span class="font-bold">{{status_count}}</span> tasks</h3></div>
 </div>
 <!-------------------------
     main content 
@@ -65,7 +65,7 @@
           </thead>
           <tbody>
             {% for task in tasks %}
-                <tr class="border border-gray-100 bg-gray-200 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-100">
+                <tr class="border border-gray-100 bg-gray-200 shadow-md transition delay-150 duration-300 ease-in-out hover:bg-gray-300 hover:scale-100 [&>td]:p-3">
                     <td><a href="{% url 'task_information' task.task_id %}">{{task.task_name}}</a></td>
                     <td class="text-center">{{ task.assign_to }}</td>
                     {% if task.status == 'Completed' %}
@@ -78,7 +78,9 @@
                     <td class="text-center">{{ task.deadline }}</td>
                     <td>
                         <div class="flex justify-end gap-2">
+                            {% if task.assign_to == request.user or request.user.role == 'Manager' %}
                             <div class="border border-gray-300 rounded-md bg-black text-white p-1"><a href="{% url 'update_task' task.task_id %}">Update</a></div>
+                            {% endif %}
                             {% if request.user.role == 'Manager' %}
                             <div class="border border-gray-300 rounded-md bg-black text-white p-1"><a href="{% url 'delete_task' task.task_id %}">Delete</a></div>
                             {% endif %}

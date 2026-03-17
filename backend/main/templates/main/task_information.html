@@ -59,14 +59,14 @@
     <div class="m-5 rounded-2xl w-2/3 h-[calc(100vh-250px)] ">
         <div class="border border-gray-300 w-full h-[calc(100vh-320px)] rounded-2xl p-5 overflow-y-auto">
             {% for comment in comments %}
-            <div class="border border-gray-200 p-5 m-5 rounded-2xl w-[calc(100%-40px)] bg-gray-100 flex justify-between transition delay-150 duration-300 ease-in-out hover:bg-gray-200 hover:scale-100">
+            <div class="p-5 m-5 rounded-2xl w-1/2 flex flex-col {% if comment.user_id == user %} ml-auto bg-green-100 {% else %} mr-auto bg-gray-100 {% endif %}">
                 <div>
-                    <h3>{{ comment.user_id.full_name }} -- {{comment.created_at}}</h3>
-                    <p>{{ comment.content }}</p>
+                    <h3 class="font-bold">{{ comment.user_id.full_name }} -- {{comment.created_at}}</h3>
+                    <p class="break-words whitespace-pre-wrap">{{ comment.content }}</p>
                 </div>
-                <div>
+                <div class="flex flex-row justify-end">
                     {% if comment.user_id == request.user or request.user.role == 'Manager' %}
-                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'update_comment' comment.comment_id %}">Update</a></div>
+                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'update_comment_task' comment.comment_id %}">Update</a></div>
                     <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'delete_comment_task' comment.comment_id %}">Delete</a></div>
                     {% endif %}
                 </div>
