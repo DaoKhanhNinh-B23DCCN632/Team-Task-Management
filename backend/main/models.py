@@ -99,6 +99,7 @@ class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True) 
     user_name = models.CharField(max_length=100, blank=True, null=True)
     content = models.TextField(blank=True, null=True) 
+    is_deleted = models.BooleanField(default=False) 
     project_id = models.ForeignKey(
         Project, 
         on_delete=models.CASCADE, 
@@ -115,6 +116,7 @@ class Comment(models.Model):
 class CommentTask(models.Model): 
     comment_id = models.AutoField(primary_key=True) 
     content = models.TextField(blank=True, null=True) 
+    is_deleted = models.BooleanField(default=False)
     project_id = models.ForeignKey(
         Project,
         on_delete=models.CASCADE,

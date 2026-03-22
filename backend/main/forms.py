@@ -128,8 +128,8 @@ class AddCommentForm(ModelForm):
         model = Comment 
         fields = ['content'] 
         widgets = {
-            'content': TextInput(attrs={
-                'class': 'border-2 border-gray-200 rounded-md w-full p-1',
+            'content': Textarea(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-full p-1 h-20',
                 'placeholder': 'Enter your comment here...'
             })
         }
@@ -139,8 +139,8 @@ class AddCommentTaskForm(ModelForm):
         model = CommentTask
         fields = ['content'] 
         widgets = {
-            'content': TextInput(attrs={
-                'class': 'border-2 border-gray-200 rounded-md w-full p-1',
+            'content': Textarea(attrs={
+                'class': 'border-2 border-gray-200 rounded-md w-full p-1 h-20',
                 'placeholder': 'Enter your comment here...'
             })
         }

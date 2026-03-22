@@ -126,9 +126,9 @@ def delete_project(request, pk):
     if request.method == 'POST':  
         project.delete() 
         messages.success(request, "Project is deleted successfully!")
-        return redirect('project')
-    context = {'project': project}
-    return render(request, 'main/delete_project.html', context=context)
+    return redirect('project')
+    # context = {'project': project}
+    # return render(request, 'main/delete_project.html', context=context)
 
 def task(request, pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
@@ -153,6 +153,7 @@ def create_task(request, pk):
         if form.is_valid(): 
             form.save() 
             messages.success(request, "Task was created successfully!") 
+            return redirect('task', pk=pk)
     context = {'form': form, 'project':project}
     return render(request, 'main/create_task.html', context=context)
 
@@ -181,9 +182,9 @@ def delete_task(request, pk):
     if request.method == 'POST': 
         task.delete() 
         messages.success(request, "Task is deleted successfully!")
-        return redirect('task', pk=task.project_id.project_id)
-    context = {'task': task}
-    return render(request, 'main/delete_task.html', context=context)
+    return redirect('task', pk=task.project_id.project_id)
+    # context = {'task': task}
+    # return render(request, 'main/delete_task.html', context=context)
 
 def update_per_info(request, pk):  
     user = Users.objects.get(id=pk)
@@ -217,9 +218,9 @@ def delete_member(request, pk):
     if request.method == 'POST':  
         user.delete() 
         messages.success(request, "User is deleted successfully!")
-        return redirect('member')
-    context = {'user': user}
-    return render(request, 'main/delete.html', context=context)
+    return redirect('member')
+    # context = {'user': user}
+    # return render(request, 'main/delete.html', context=context)
 
 def add_member(request): 
     form = AddMemberForm() 
@@ -261,9 +262,8 @@ def update_comment(request, pk):
         form = AddCommentForm(request.POST, instance=comment)
         if form.is_valid(): 
             form.save() 
-            return redirect('comment', pk=project.project_id) 
-    context = {'form': form, 'project': project, 'comment': comment}
-    return render(request, 'main/update_comment.html', context=context)
+    return redirect('comment', pk=project.project_id) 
+
 def delete_comment(request, pk):
     comment = Comment.objects.filter(comment_id=pk).first() 
     project = Project.objects.get(project_id=comment.project_id.project_id)
@@ -271,12 +271,13 @@ def delete_comment(request, pk):
         messages.warning(request, "Comment was deleted!")
         return redirect('comment', pk=comment.project_id.project_id) 
     
-    if request.method == 'POST': 
-        comment.delete() 
+    if request.method == 'POST':
+        comment.is_deleted = True 
+        comment.save()
         messages.success(request, "Comment is deleted successfully!")
-        return redirect('comment', pk=comment.project_id.project_id)
-    context = {'comment': comment, 'project': project}
-    return render(request, 'main/delete_comment.html', context=context)
+    return redirect('comment', pk=comment.project_id.project_id)
+    # context = {'comment': comment, 'project': project}
+    # return render(request, 'main/delete_comment.html', context=context)
 
 def task_information(request, pk): 
     task = Task.objects.get(task_id=pk) 
@@ -304,7 +305,8 @@ def delete_comment_task(request, pk):
         messages.warning(request, "Comment was deleted!")
         return redirect('task_information', pk=task.task_id)
     if request.method == 'POST':
-        comment_task.delete() 
+        comment_task.is_deleted = True
+        comment_task.save()
         messages.success(request, "Comment is deleted successfully!")
         return redirect('task_information', pk=task.task_id)
     context = {'comment': comment_task, 'task': task, 'project': project}

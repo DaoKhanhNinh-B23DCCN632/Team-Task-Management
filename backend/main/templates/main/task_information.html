@@ -57,24 +57,56 @@
         </div>
     </div>
     <div class="m-5 rounded-2xl w-2/3 h-[calc(100vh-250px)] ">
-        <div class="border border-gray-300 w-full h-[calc(100vh-320px)] rounded-2xl p-5 overflow-y-auto">
+        <div id="chat_box" class="border border-gray-300 w-full h-[calc(100vh-320px)] rounded-2xl p-5 overflow-y-auto">
             {% for comment in comments %}
             <div class="p-5 m-5 rounded-2xl w-1/2 flex flex-col {% if comment.user_id == user %} ml-auto bg-green-100 {% else %} mr-auto bg-gray-100 {% endif %}">
                 <div>
                     <h3 class="font-bold">{{ comment.user_id.full_name }} -- {{comment.created_at}}</h3>
-                    <p class="break-words whitespace-pre-wrap">{{ comment.content }}</p>
+                    {% if comment.is_deleted %}
+                        <p class="italic text-gray-500">This comment has been deleted.</p>
+                    {% else %}
+                        <p class="break-words whitespace-pre-wrap">{{ comment.content }}</p>
+                    {% endif %}
                 </div>
                 <div class="flex flex-row justify-end">
-                    {% if comment.user_id == request.user or request.user.role == 'Manager' %}
-                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'update_comment_task' comment.comment_id %}">Update</a></div>
-                    <div class="border border-gray-200 bg-black text-white rounded-xl p-1"><a href="{% url 'delete_comment_task' comment.comment_id %}">Delete</a></div>
+                    {% if not comment.is_deleted %}
+                        {% if comment.user_id == request.user or request.user.role == 'Manager' %}
+                        <button onclick="openModalUpdate('{{comment.comment_id}}')" class="border border-gray-200 bg-black text-white rounded-xl p-1">Update</button>
+                        <button onclick="openModalDelete('{{comment.comment_id}}')" class="border border-gray-200 bg-black text-white rounded-xl p-1">Delete</button>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
             {% endfor %}
         </div>
+        <div id="updateModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+            <form onsubmit="saveScrollPosition('other')" action="" id="updateForm" class="bg-white w-[320px] rounded-md shadow-lg p-6" method="POST">
+                {% csrf_token %}
+                {{ form.content }}
+                <div class="flex justify-end mt-5">
+                    <button type="submit" class="border border-gray-200 bg-black text-white rounded-xl p-1">Edit</button>
+                    <button type="button" onclick="closeModalUpdate()" class="border border-gray-200 bg-black text-white rounded-xl p-1">Cancel</button>
+                </div>
+            </form>
+
+        </div>
+        <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+            <div class="bg-white p-6 rounded-xl shadow-lg w-[320px] text-center">
+                <div>
+                    <h2 class="text-lg font-bold mb-4">Confirm Delete</h2>
+                    <p class="mb-4">Are you sure you want to delete this comment?</p>
+                </div>
+                <form action="" id="deleteForm" method="POST" onsubmit="saveScrollPosition('other')" >
+                    {% csrf_token %}
+                    <div class="flex justify-between">
+                        <button type="submit" class="bg-black text-white px-4 py-2 rounded-md mr-2">Delete</button>
+                        <button type="button" class="px-4 py-2 bg-gray-300 rounded-md" onclick="closeModalDelete()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="border border-gray-300 w-full mr-5 rounded-2xl p-4">
-            <form action="" method="post" class="flex justify-between">
+            <form  onsubmit="saveScrollPosition('add')"  action="" method="post" class="flex justify-between">
                 {% csrf_token %}
                 <div class="flex flex-row w-full">
                     <div class="w-full">{{ form.content }}</div>
@@ -86,4 +118,55 @@
         </div>
     </div>
 </div>
+<script>
+    function openModalUpdate(commentId){
+        const modal = document.getElementById('updateModal');
+        const form = document.getElementById('updateForm'); 
+
+        form.action = `/update_comment_task/${commentId}`; 
+
+        modal.classList.remove('hidden'); 
+        modal.classList.add('flex'); 
+    }
+    function closeModalUpdate(){
+        modal = document.getElementById('updateModal');
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    } 
+    function openModalDelete(commentId){
+        const modal = document.getElementById('deleteModal'); 
+        const form = document.getElementById('deleteForm'); 
+
+        form.action = `/delete_comment_task/${commentId}`;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+    function closeModalDelete(){
+        const modal = document.getElementById('deleteModal'); 
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+    function saveScrollPosition(type){
+        const chat_box = document.getElementById('chat_box');
+        if (type === 'add'){
+            localStorage.removeItem('scrollPosition');
+        } 
+        else {
+            localStorage.setItem('scrollPosition', chat_box.scrollTop); 
+        }
+    }
+    window.onload = function(){
+        const chat_box = document.getElementById('chat_box'); 
+        const savedPosition = localStorage.getItem('scrollPosition'); 
+        if (savedPosition !== null){
+            chat_box.scrollTop = savedPosition;
+            localStorage.removeItem('scrollPosition');
+        }
+        else {
+            chat_box.scrollTop = chat_box.scrollHeight; 
+        }
+    }
+</script>
 {% endblock %}

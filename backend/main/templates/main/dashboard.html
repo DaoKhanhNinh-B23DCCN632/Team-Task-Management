@@ -36,7 +36,7 @@ overview
     <div>
         <div class="text-center mb-2"><h2><span class="font-bold">{{ date }}</span></h2></div>
         {% if request.user.role == 'Manager' %}
-        <div class="border-white mb-2 rounded-xl text-center shadow-md"><a href="{% url 'create_project' %}"><span class="font-bold">Add Project</span></a></div>
+        <div class="border-white mb-2 rounded-xl text-center shadow-md bg-gray-200"><a href="{% url 'create_project' %}"><span class="font-bold">Add Project</span></a></div>
         {% endif %}                                                                         
     </div>                        
 </div>
