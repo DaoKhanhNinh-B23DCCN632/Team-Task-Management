@@ -11,7 +11,7 @@ header
         <!-- <div class="mr-2"><img src="{% static 'icons/notify.png' %}" alt="notify icon" class="w-8"></div>
         <div class="mr-10"><img src="{% static 'icons/new-email.png' %}" alt="new email icon" class="w-8"></div> -->
         <div class="flex flex-row">
-            <img src="{% static 'icons/profile.png' %}" alt="user icon" class="w-10 mr-2">
+            <button onclick="openModal('{{ user.id }}')"><img src="{% static 'icons/profile.png' %}" alt="user icon" class="w-10 mr-2"></button>
             <div>
                 <h2 class="font-bold">{{ user.full_name }}</h2>
                 <h3 class="text-sm">{{ user.email }}</h3>
@@ -71,4 +71,75 @@ overview
         {% endfor %}
     </div>
 </div>
+<div id="profileModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+    <div class="bg-white p-6 rounded-xl shadow-md w-[400px] space-y-6">
+        <div class="border-b border-b-gray-200">
+            <h2 class="font-bold text-[20px]">User Profile</h2>
+            <small>Detailed information of the member account</small>
+        </div>
+        <div class="flex flex-row">
+            <div class="flex items-center justify-center bg-gray-200 w-8 h-8 rounded-full mr-2">
+                <img src="{% static '\icons\people.png' %}" alt="user_image" class="w-5 h-5">
+            </div>
+            <div>
+                <p class="text-gray-500">FULL NAME</p>
+                <p>{{ user.full_name }}</p>
+            </div>
+        </div>
+        <div class="flex flex-row">
+            <div class="flex items-center justify-center bg-gray-200 w-8 h-8 rounded-full mr-2">
+                <img src="{% static '\icons\mail.png' %}" alt="mail_image" class="w-5 h-5">
+            </div>
+            <div>
+                <p class="text-gray-500">EMAIL</p>
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex flex-row">
+                <div class="flex items-center justify-center bg-gray-200 w-8 h-8 rounded-full mr-2">
+                    <img src="{% static '\icons\verified.png' %}" alt="role_image" class="w-5 h-5">
+                </div>
+                <div>
+                    <p class="text-gray-500">ROLE</p>
+                    <p>{{ user.role }}</p>
+                </div>
+            </div>
+            <div class="flex flex-row">
+                <div class="flex items-center justify-center bg-gray-200 w-8 h-8 rounded-full mr-2">
+                    <img src="{% static '\icons\gender-fluid.png' %}" alt="gender_image" class="w-5 h-5">
+                </div>
+                <div>
+                    <p class="text-gray-500">GENDER</p>
+                    <p>{{ user.gender }}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="flex flex-row">
+                <div class="flex items-center justify-center bg-gray-200 w-8 h-8 rounded-full mr-2">
+                    <img src="{% static '\icons\calendar.png' %}" alt="calendar_image" class="w-5 h-5">
+                </div>
+                <div>
+                    <p class="text-gray-500">DATE OF BIRTH</p>
+                    <p>{{ user.date_of_birth }}</p>
+                </div>
+            </div>
+        </div>
+        <button class="border border-gray-200 bg-black text-white rounded-xl p-2 mt-5" onclick="closeModal()">Close</button>
+    </div>
+
+</div>
+<script>
+    function openModal(userId){
+        const modal = document.getElementById('profileModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+    function closeModal(){
+        const modal = document.getElementById('profileModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+</script>
 {% endblock %}

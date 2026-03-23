@@ -1,5 +1,5 @@
 #type: ignore
-from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput, PasswordInput
+from django.forms import ModelForm, TextInput, Textarea, DateTimeInput, Select, EmailInput, PasswordInput, DateInput
 from .models import Project, Task, Users, Comment, CommentTask
 
 class ProjectForm(ModelForm): 
@@ -15,10 +15,12 @@ class ProjectForm(ModelForm):
                 'placeholder': 'Describe project in detail...', 
                 'class': 'border-2 border-gray-200  w-[calc(100%-20px)] h-48 rounded-md'
             }), 
-            'start_date': DateTimeInput(attrs={
+            'start_date': DateInput(attrs={
+                'type': 'date',
                 "class": "border-2 border-gray-200 rounded-md w-[calc(100%-20px)]"
             }),
-            'end_date': DateTimeInput(attrs={
+            'end_date': DateInput(attrs={
+                'type': 'date',
                 "class": "border-2 border-gray-200 rounded-md w-[calc(100%-20px)]"
             }),
             'created_by': Select(attrs={
@@ -50,7 +52,8 @@ class TaskForm(ModelForm):
             'status': Select(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-1000px)]'
             }), 
-            'deadline': DateTimeInput(attrs={
+            'deadline': DateInput(attrs={
+                'type': 'date',
                 'class': 'border-2 border-gray-200 rounded-md w-[calc(100%-1000px)]'
             })
         }
@@ -73,7 +76,8 @@ class ProfileForm(ModelForm):
             'gender': Select(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
-            'date_of_birth': DateTimeInput(attrs={
+            'date_of_birth': DateInput(attrs={
+                'type': 'date',
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
             'role': Select(attrs={
@@ -82,7 +86,7 @@ class ProfileForm(ModelForm):
             'email': EmailInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
-            'username': PasswordInput(attrs={
+            'username': TextInput(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             })
         }
@@ -106,7 +110,8 @@ class AddMemberForm(ModelForm):
             'gender': Select(attrs={
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
-            'date_of_birth': DateTimeInput(attrs={
+            'date_of_birth': DateInput(attrs={
+                'type': 'date',
                 'class': 'border-2 border-gray-200 rounded-md w-80'
             }), 
             'role': Select(attrs={

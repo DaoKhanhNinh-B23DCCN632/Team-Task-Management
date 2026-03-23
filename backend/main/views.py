@@ -195,7 +195,9 @@ def update_per_info(request, pk):
             form.save() 
             messages.success(request, "Personal information is updated!")
             return redirect('member') 
-    context = {'form': form}
+        else:
+            print(form.errors)
+    context = {'form': form, 'user': user}
     return render(request, 'main/update_per_info.html', context=context)
 
 def member(request): 

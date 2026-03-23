@@ -17,7 +17,7 @@ class Users(AbstractUser):
     full_name = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=20, blank=True, null=True, choices=role_dict)
     gender = models.CharField(max_length=50, blank=True, null=True, choices=gender_dict)
-    date_of_birth = models.DateTimeField(blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
     def __str__(self):
         return self.username 
 
@@ -31,8 +31,8 @@ class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     project_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateTimeField(blank=True, null=True) 
-    end_date = models.DateTimeField(blank=True, null=True) 
+    start_date = models.DateField(blank=True, null=True) 
+    end_date = models.DateField(blank=True, null=True) 
     created_by = models.ForeignKey(
         Users, 
         on_delete=models.PROTECT, 
@@ -53,7 +53,7 @@ class Task(models.Model):
     task_name = models.CharField(max_length=100, blank=True, null=True) 
     description = models.TextField(blank=True, null=True) 
     status = models.CharField(max_length=50, blank=True, null=True, choices=status_choices) 
-    deadline = models.DateTimeField(blank=True, null=True)
+    deadline = models.DateField(blank=True, null=True)
     project_id = models.ForeignKey(
         Project, 
         on_delete=models.CASCADE, 
@@ -78,13 +78,13 @@ class TaskStatusHistory(models.Model):
     )
     old_status = models.CharField(max_length=20, blank=True, null=True)
     new_status = models.CharField(max_length=20, blank=True, null=True)
-    changed_at = models.DateTimeField(blank=True, null=True) 
+    changed_at = models.DateField(blank=True, null=True) 
 
 class ProjectMember(models.Model):
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE) 
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
     role_in_project = models.CharField(max_length=50)
-    joined_at = models.DateTimeField(blank=True, null=True)
+    joined_at = models.DateField(blank=True, null=True)
 
 class Notification(models.Model): 
     notification_id = models.AutoField(primary_key=True) 
@@ -110,7 +110,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE, 
         related_name='comments'
     )
-    created_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    created_at = models.DateField(blank=True, null=True, auto_now_add=True)
     def __str__(self):
         return self.content or "No content"
 class CommentTask(models.Model): 
@@ -132,7 +132,7 @@ class CommentTask(models.Model):
         on_delete=models.CASCADE, 
         related_name='comments_task'
     )
-    created_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    created_at = models.DateField(blank=True, null=True, auto_now_add=True)
     def __str__(self):
         return self.content or "No content"
 

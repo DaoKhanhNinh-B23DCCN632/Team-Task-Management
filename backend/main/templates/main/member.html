@@ -22,7 +22,7 @@
             </div>
             <div>
                 {% if request.user.role == 'Manager' or request.user.id == user.id %}
-                <a href="{% url 'update_per_info' user.id %} "  class="border border-gray-200 rounded-md bg bg-black text-white p-1">Update</a>
+                <a href="{% url 'update_per_info' user.id %} "  class="border border-gray-200 rounded-md bg bg-black text-white p-[7px]">Update</a>
                 {% endif %}
                 {% if request.user.role == 'Manager' %}
                     <button onclick="openModal('{{ user.id }}')" class="border border-gray-200 rounded-md bg bg-black text-white p-1">Delete</button>
